@@ -58,6 +58,40 @@
   :bind ("C-c e" . er/expand-region)
   :ensure t)
 
+(use-package undo-tree
+  :init (global-undo-tree-mode 1)
+  :bind (("C-c j" . undo-tree-undo)
+         ("C-c k" . undo-tree-redo)
+         ("C-c l" . undo-tree-switch-branch)
+         ("C-c ;" . undo-tree-visualize))
+  :ensure t)
+
+(use-package auto-indent-mode
+  :init (progn
+          (add-hook 'prog-mode-hook 'auto-indent-mode)
+          (add-hook 'prog-mode-hook (defun indent-tabs-mode-off ()
+                                      (interactive)
+                                      (setq indent-tabs-mode nil))))
+  :ensure t)
+
+(use-package highlight-parentheses
+  :config (progn
+	    (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
+  :ensure t)
+
+(use-package flycheck
+  :config (progn
+            (add-hook 'c-mode-hook 'flycheck-mode)
+            (add-hook 'c++-mode-hook 'flycheck-mode))
+  :ensure t)
+
+(use-package shell-command
+  :ensure t)
+
+;; Actually depends on shell-command
+;(use-package bash-completion
+;  :ensure t)
+
 (use-package popwin
   :config (popwin-mode t)
   :ensure t)

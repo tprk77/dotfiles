@@ -1,3 +1,5 @@
+;;; Personal Customizations
+
 (mapc (lambda(mode) (when (fboundp mode) (apply mode '(-1))))
       '(tool-bar-mode
         menu-bar-mode
@@ -9,9 +11,20 @@
 
 (icomplete-mode t)
 
+;; Give buffers better names
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
-(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-buffer-name-style 'post-forward
+      uniquify-after-kill-buffer-p t)
+
+;; Smoother scrolling
+(setq mouse-wheel-scroll-amount '(4 ((shift) . 4)) ; four lines at a time
+      mouse-wheel-progressive-speed nil ; don't accelerate scrolling
+      mouse-wheel-follow-mouse 't ; scroll window under mouse
+      scroll-step 1 ; keyboard scroll one line at a time
+      scroll-conservatively 10000 ; don't jump around as much
+      auto-window-vscroll nil) ; magic?
+
+;;; Package Support
 
 (mapc (lambda (p) (push p load-path))
       '("~/.emacs.d/use-package/"))
@@ -33,6 +46,8 @@
   (package-refresh-contents))
 
 (package-initialize)
+
+;;; Packages
 
 (use-package cl-lib)
 

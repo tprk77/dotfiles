@@ -11,6 +11,10 @@
 
 (icomplete-mode t)
 
+;; Auto revert everything (including TAGS)
+(global-auto-revert-mode t)
+(setq tags-revert-without-query t)
+
 ;; Give buffers better names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward
@@ -23,6 +27,32 @@
       scroll-step 1 ; keyboard scroll one line at a time
       scroll-conservatively 10000 ; don't jump around as much
       auto-window-vscroll nil) ; magic?
+
+;; Don't open logs with nroff 
+(add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . fundamental-mode))
+
+;; Add Rethink Lisp indenting... is there a better way to do this?
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'rethink)
+(set-rethink-lisp-indent)
+
+;; Allow C-x C-o to go to the last window
+(global-set-key (kbd "C-x C-o")
+                '(lambda ()
+                   (interactive)
+                   (other-window -1)))
+
+;; Allow C-x p and C-x C-p to switch frames
+(global-set-key (kbd "C-x p")
+                '(lambda ()
+                   (interactive)
+                   (other-frame 1)
+                   (select-frame-set-input-focus (selected-frame))))
+(global-set-key (kbd "C-x C-p")
+                '(lambda ()
+                   (interactive)
+                   (other-frame -1)
+                   (select-frame-set-input-focus (selected-frame))))
 
 ;;; Package Support
 

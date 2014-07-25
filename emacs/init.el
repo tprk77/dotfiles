@@ -9,10 +9,10 @@
       inhibit-startup-screen t
       indent-tabs-mode nil)
 
-(icomplete-mode t)
+(icomplete-mode)
 
 ;; Auto revert everything (including TAGS)
-(global-auto-revert-mode t)
+(global-auto-revert-mode)
 (setq tags-revert-without-query t)
 
 ;; Give buffers better names
@@ -89,7 +89,7 @@
   :ensure t)
 
 (use-package undo-tree
-  :init (global-undo-tree-mode 1)
+  :init (global-undo-tree-mode)
   :bind (("C-c j" . undo-tree-undo)
          ("C-c k" . undo-tree-redo)
          ("C-c l" . undo-tree-switch-branch)
@@ -97,6 +97,7 @@
   :ensure t)
 
 (use-package auto-indent-mode
+  :defer t
   :init (progn
           (add-hook 'prog-mode-hook 'auto-indent-mode)
           (add-hook 'prog-mode-hook (defun indent-tabs-mode-off ()
@@ -105,27 +106,30 @@
   :ensure t)
 
 (use-package highlight-parentheses
-  :config (progn
-	    (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
+  :defer t
+  :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
   :ensure t)
 
 (use-package flycheck
-  :config (progn
-            (add-hook 'c-mode-hook 'flycheck-mode)
-            (add-hook 'c++-mode-hook 'flycheck-mode))
+  :defer t
+  :init (progn
+          (add-hook 'c-mode-hook 'flycheck-mode)
+          (add-hook 'c++-mode-hook 'flycheck-mode))
   :ensure t)
 
 (use-package shell-command
+  :init (shell-command-completion-mode)
   :ensure t)
 
 ;; Actually depends on shell-command
-;(use-package bash-completion
-;  :ensure t)
+(use-package bash-completion
+  :init (bash-completion-setup)
+  :ensure t)
 
 (use-package popwin
-  :config (popwin-mode t)
+  :init (popwin-mode)
   :ensure t)
 
 (use-package markdown-mode
-  :defer t
+  :mode ("\\.md\\'" . markdown-mode)
   :ensure t)

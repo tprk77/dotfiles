@@ -123,6 +123,7 @@
 
 ;; Actually depends on shell-command
 (use-package bash-completion
+  :disabled t
   :init (bash-completion-setup)
   :ensure t)
 

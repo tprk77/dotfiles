@@ -6,8 +6,9 @@
         scroll-bar-mode))
 
 (setq ring-bell-function #'ignore
-      inhibit-startup-screen t
-      indent-tabs-mode nil)
+      inhibit-startup-screen t)
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
 (icomplete-mode)
 

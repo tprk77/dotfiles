@@ -1,0 +1,8 @@
+# change some stuff specific to the Emacs shell
+if [ -n "$INSIDE_EMACS" ]; then
+    export PAGER=/bin/cat
+    export MANPAGER=/bin/cat
+    export GIT_PAGER=/bin/cat
+    #export EDITOR=emacsclient
+    #alias git="git --no-pager"
+fi

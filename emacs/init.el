@@ -99,11 +99,8 @@
 
 (use-package auto-indent-mode
   :defer t
-  :init (progn
-          (add-hook 'prog-mode-hook 'auto-indent-mode)
-          (add-hook 'prog-mode-hook (defun indent-tabs-mode-off ()
-                                      (interactive)
-                                      (setq indent-tabs-mode nil))))
+  :init (add-hook 'prog-mode-hook 'auto-indent-mode)
+  :config (setq auto-indent-blank-lines-on-move nil)
   :ensure t)
 
 (use-package highlight-parentheses

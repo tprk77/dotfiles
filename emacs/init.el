@@ -82,7 +82,16 @@
 
 (use-package cl-lib)
 
+(use-package solarized-theme
+  :init (progn
+          (setq solarized-use-less-bold t)
+          (setq solarized-emphasize-indicators nil)
+          (setq x-underline-at-descent-line t))
+  :config (load-theme 'solarized-dark t)
+  :ensure t)
+
 (use-package ample-theme
+  :disabled t
   :ensure t)
 
 (use-package expand-region

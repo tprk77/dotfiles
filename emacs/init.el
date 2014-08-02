@@ -65,10 +65,6 @@
 (font-lock-add-keywords 'lisp-interaction-mode use-package-font-lock-keywords)
 (require 'package)
 
-(defmacro depends (name &rest body)
-  (declare (indent defun))
-  `(eval-after-load ,name (lambda () ,@body)))
-
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; Secret option to refresh packages

@@ -71,10 +71,11 @@
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-(when (and (member "--" command-line-args)
-	   (member "-refresh" command-line-args))
-  (delete "-refresh" command-line-args)
-  (package-refresh-contents))
+;; Secret option to refresh packages
+(let ((refresh-packages-option "--refresh-packages"))
+  (when (member refresh-packages-option command-line-args)
+    (delete refresh-packages-option command-line-args)
+    (package-refresh-contents)))
 
 (package-initialize)
 

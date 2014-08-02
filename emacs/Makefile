@@ -7,3 +7,4 @@ all:
 	cp init.el -t ~/.emacs.d/
 	cp rethink.el -t ~/.emacs.d/
 	cp -R use-package/ -t ~/.emacs.d/
+	emacs --refresh-packages

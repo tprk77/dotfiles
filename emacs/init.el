@@ -123,12 +123,9 @@
 
 (use-package shell-command
   :init (shell-command-completion-mode)
-  :ensure t)
-
-;; Actually depends on shell-command
-(use-package bash-completion
-  :disabled t
-  :init (bash-completion-setup)
+  :config (use-package bash-completion
+            :init (bash-completion-setup)
+            :ensure t)
   :ensure t)
 
 (use-package popwin

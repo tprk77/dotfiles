@@ -112,6 +112,9 @@
 (use-package highlight-parentheses
   :defer t
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
+  :config (setq hl-paren-highlight-adjacent t
+                ;; and turn off paren blinking...
+                blink-matching-paren nil)
   :ensure t)
 
 (use-package flycheck

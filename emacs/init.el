@@ -1,6 +1,6 @@
 ;;; Personal Customizations
 
-(mapc (lambda(mode) (when (fboundp mode) (apply mode '(-1))))
+(mapc (lambda (mode) (when (fboundp mode) (apply mode '(-1))))
       '(tool-bar-mode
         menu-bar-mode
         scroll-bar-mode))
@@ -39,21 +39,21 @@
 
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
-                '(lambda ()
-                   (interactive)
-                   (other-window -1)))
+                (lambda ()
+                  (interactive)
+                  (other-window -1)))
 
 ;; Allow C-x p and C-x C-p to switch frames
 (global-set-key (kbd "C-x p")
-                '(lambda ()
-                   (interactive)
-                   (other-frame 1)
-                   (select-frame-set-input-focus (selected-frame))))
+                (lambda ()
+                  (interactive)
+                  (other-frame 1)
+                  (select-frame-set-input-focus (selected-frame))))
 (global-set-key (kbd "C-x C-p")
-                '(lambda ()
-                   (interactive)
-                   (other-frame -1)
-                   (select-frame-set-input-focus (selected-frame))))
+                (lambda ()
+                  (interactive)
+                  (other-frame -1)
+                  (select-frame-set-input-focus (selected-frame))))
 
 ;;; Package Support
 

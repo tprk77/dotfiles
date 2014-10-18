@@ -55,6 +55,14 @@
                   (other-frame -1)
                   (select-frame-set-input-focus (selected-frame))))
 
+;; Hook for C++
+(add-hook 'c++-mode-hook (lambda ()
+                           (c-set-offset 'innamespace 0)))
+
+;; Hook for Javascript
+(add-hook 'js-mode-hook (lambda ()
+                          (setq js-indent-level 2)))
+
 ;;; Package Support
 
 (mapc (lambda (p) (push p load-path))

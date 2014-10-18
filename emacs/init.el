@@ -147,4 +147,8 @@
 
 (use-package markdown-mode
   :mode ("\\.md\\'" . markdown-mode)
+  :init (add-hook 'markdown-mode-hook (lambda ()
+                                        (flyspell-mode)
+                                        (flyspell-buffer)
+                                        (auto-fill-mode)))
   :ensure t)

@@ -129,7 +129,9 @@
   :defer t
   :init (progn
           (add-hook 'c-mode-hook 'flycheck-mode)
-          (add-hook 'c++-mode-hook 'flycheck-mode))
+          (add-hook 'c++-mode-hook (lambda ()
+                                     (flycheck-mode)
+                                     (setq flycheck-clang-language-standard "c++11"))))
   :ensure t)
 
 (use-package shell-command

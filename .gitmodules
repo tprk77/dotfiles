@@ -1,3 +1,6 @@
 [submodule "emacs/use-package"]
 	path = emacs/use-package
 	url = https://github.com/jwiegley/use-package.git
+[submodule "emacs/plugins/highlight-parentheses"]
+	path = emacs/plugins/highlight-parentheses
+	url = https://github.com/tprk77/highlight-parentheses.el.git

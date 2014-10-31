@@ -65,15 +65,16 @@
 
 ;;; Package Support
 
-(mapc (lambda (p) (push p load-path))
-      '("~/.emacs.d/use-package/"))
+(add-to-list 'load-path "~/.emacs.d/use-package/")
+(let ((default-directory "~/.emacs.d/plugins/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (require 'use-package)
 (font-lock-add-keywords 'emacs-lisp-mode use-package-font-lock-keywords)
 (font-lock-add-keywords 'lisp-interaction-mode use-package-font-lock-keywords)
-(require 'package)
-
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; Secret option to refresh packages
 (let ((refresh-packages-option "--refresh-packages"))
@@ -118,12 +119,12 @@
   :ensure t)
 
 (use-package highlight-parentheses
-  :defer t
+  ;; Note that we want to use my fork for this...
+  :commands highlight-parentheses-mode
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
                 ;; and turn off paren blinking...
-                blink-matching-paren nil)
-  :ensure t)
+                blink-matching-paren nil))
 
 (use-package flycheck
   :defer t

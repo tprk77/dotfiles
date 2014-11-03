@@ -16,11 +16,6 @@
 (global-auto-revert-mode)
 (setq tags-revert-without-query t)
 
-;; Give buffers better names
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward
-      uniquify-after-kill-buffer-p t)
-
 ;; Smoother scrolling
 (setq mouse-wheel-scroll-amount '(4 ((shift) . 4)) ; four lines at a time
       mouse-wheel-progressive-speed nil ; don't accelerate scrolling
@@ -90,6 +85,13 @@
 
 (use-package cl-lib)
 
+(use-package custom
+  :config (setq custom-file "~/.emacs.d/custom.el"))
+
+(use-package uniquify
+  :config (setq uniquify-buffer-name-style 'post-forward
+                uniquify-after-kill-buffer-p t))
+
 (use-package solarized-theme
   :config (progn
             (setq solarized-use-less-bold t)
@@ -100,19 +102,6 @@
 
 (use-package ample-theme
   :disabled t)
-
-(use-package expand-region
-  :bind ("C-c e" . er/expand-region)
-  :ensure t)
-
-(use-package undo-tree
-  :idle (global-undo-tree-mode)
-  :idle-priority 3
-  :bind (("C-c j" . undo-tree-undo)
-         ("C-c k" . undo-tree-redo)
-         ("C-c l" . undo-tree-switch-branch)
-         ("C-c ;" . undo-tree-visualize))
-  :ensure t)
 
 (use-package auto-indent-mode
   :init (add-hook 'prog-mode-hook 'auto-indent-mode)
@@ -136,19 +125,32 @@
   :defer t
   :ensure t)
 
-(use-package shell-command
-  :idle (shell-command-completion-mode)
-  :idle-priority 4
-  :config (bash-completion-setup)
+(use-package undo-tree
+  :idle (global-undo-tree-mode)
+  :idle-priority 3
+  :bind (("C-c j" . undo-tree-undo)
+         ("C-c k" . undo-tree-redo)
+         ("C-c l" . undo-tree-switch-branch)
+         ("C-c ;" . undo-tree-visualize))
+  :ensure t)
+
+(use-package popwin
+  :idle (popwin-mode)
+  :idle-priority 3
   :ensure t)
 
 (use-package bash-completion
   :defer t
   :ensure t)
 
-(use-package popwin
-  :idle (popwin-mode)
-  :idle-priority 3
+(use-package shell-command
+  :idle (shell-command-completion-mode)
+  :idle-priority 4
+  :config (bash-completion-setup)
+  :ensure t)
+
+(use-package expand-region
+  :bind ("C-c e" . er/expand-region)
   :ensure t)
 
 (use-package markdown-mode

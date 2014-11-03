@@ -94,7 +94,6 @@
 
 (use-package solarized-theme
   :config (progn
-            (setq solarized-use-less-bold t)
             (setq solarized-emphasize-indicators nil)
             (setq x-underline-at-descent-line t)
             (load-theme 'solarized-dark t))

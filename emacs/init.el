@@ -29,7 +29,7 @@
       scroll-conservatively 10000 ; don't jump around as much
       auto-window-vscroll nil) ; magic?
 
-;; Don't open logs with nroff 
+;; Don't open logs with nroff
 (add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . fundamental-mode))
 
 ;; Add Rethink Lisp indenting... is there a better way to do this?
@@ -56,12 +56,14 @@
                   (select-frame-set-input-focus (selected-frame))))
 
 ;; Hook for C++
-(add-hook 'c++-mode-hook (lambda ()
-                           (c-set-offset 'innamespace 0)))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (c-set-offset 'innamespace 0)))
 
 ;; Hook for Javascript
-(add-hook 'js-mode-hook (lambda ()
-                          (setq js-indent-level 2)))
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq js-indent-level 2)))
 
 ;;; Package Support
 
@@ -89,23 +91,23 @@
 (use-package cl-lib)
 
 (use-package solarized-theme
-  :init (progn
-          (setq solarized-use-less-bold t)
-          (setq solarized-emphasize-indicators nil)
-          (setq x-underline-at-descent-line t))
-  :config (load-theme 'solarized-dark t)
+  :config (progn
+            (setq solarized-use-less-bold t)
+            (setq solarized-emphasize-indicators nil)
+            (setq x-underline-at-descent-line t)
+            (load-theme 'solarized-dark t))
   :ensure t)
 
 (use-package ample-theme
-  :disabled t
-  :ensure t)
+  :disabled t)
 
 (use-package expand-region
   :bind ("C-c e" . er/expand-region)
   :ensure t)
 
 (use-package undo-tree
-  :init (global-undo-tree-mode)
+  :idle (global-undo-tree-mode)
+  :idle-priority 3
   :bind (("C-c j" . undo-tree-undo)
          ("C-c k" . undo-tree-redo)
          ("C-c l" . undo-tree-switch-branch)
@@ -113,43 +115,46 @@
   :ensure t)
 
 (use-package auto-indent-mode
-  :defer t
   :init (add-hook 'prog-mode-hook 'auto-indent-mode)
   :config (setq auto-indent-blank-lines-on-move nil)
   :ensure t)
 
 (use-package highlight-parentheses
   ;; Note that we want to use my fork for this...
-  :commands highlight-parentheses-mode
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
                 ;; and turn off paren blinking...
                 blink-matching-paren nil))
 
 (use-package flycheck
-  :defer t
   :init (progn
           (add-hook 'c-mode-hook 'flycheck-mode)
-          (add-hook 'c++-mode-hook (lambda ()
-                                     (flycheck-mode)
-                                     (setq flycheck-clang-language-standard "c++11"))))
+          (add-hook 'c++-mode-hook  'flycheck-mode))
+  :config (add-hook 'c++-mode-hook
+                    (lambda ()
+                      (setq flycheck-clang-language-standard "c++11")))
+  :defer t
   :ensure t)
 
 (use-package shell-command
-  :init (shell-command-completion-mode)
-  :config (use-package bash-completion
-            :init (bash-completion-setup)
-            :ensure t)
+  :idle (shell-command-completion-mode)
+  :idle-priority 4
+  :config (bash-completion-setup)
+  :ensure t)
+
+(use-package bash-completion
+  :defer t
   :ensure t)
 
 (use-package popwin
-  :init (popwin-mode)
+  :idle (popwin-mode)
+  :idle-priority 3
   :ensure t)
 
 (use-package markdown-mode
-  :mode ("\\.md\\'" . markdown-mode)
-  :init (add-hook 'markdown-mode-hook (lambda ()
-                                        (flyspell-mode)
-                                        (flyspell-buffer)
-                                        (auto-fill-mode)))
+  :config (add-hook 'markdown-mode-hook
+                    (lambda ()
+                      (flyspell-mode)
+                      (flyspell-buffer)
+                      (auto-fill-mode)))
   :ensure t)

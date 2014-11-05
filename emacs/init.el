@@ -161,3 +161,8 @@
                       (flyspell-buffer)
                       (auto-fill-mode)))
   :ensure t)
+
+(use-package google-c-style
+  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
+  :defer t
+  :ensure t)

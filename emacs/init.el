@@ -121,7 +121,8 @@
           (add-hook 'c++-mode-hook  'flycheck-mode))
   :config (add-hook 'c++-mode-hook
                     (lambda ()
-                      (setq flycheck-clang-language-standard "c++11")))
+                      (setq flycheck-clang-language-standard "c++11"
+                            flycheck-gcc-language-standard "c++11")))
   :defer t
   :ensure t)
 

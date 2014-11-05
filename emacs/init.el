@@ -103,16 +103,17 @@
 (use-package ample-theme
   :disabled t)
 
+;; Going to load first thing with scratch buffer
 (use-package auto-indent-mode
   :init (add-hook 'prog-mode-hook 'auto-indent-mode)
   :config (setq auto-indent-blank-lines-on-move nil)
   :ensure t)
 
+;; Going to load first thing with scratch buffer
 (use-package highlight-parentheses
-  ;; Note that we want to use my fork for this...
+  ;; We want to use my fork for this, so no ensure
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
-                ;; and turn off paren blinking...
                 blink-matching-paren nil))
 
 (use-package flycheck
@@ -126,6 +127,18 @@
   :defer t
   :ensure t)
 
+(use-package google-c-style
+  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
+  :defer t
+  :ensure t)
+
+(use-package popwin
+  :idle (popwin-mode)
+  :idle-priority 2
+  ;; Popwin appears to be missing this autoload
+  :commands popwin-mode
+  :ensure t)
+
 (use-package undo-tree
   :idle (global-undo-tree-mode)
   :idle-priority 3
@@ -133,11 +146,6 @@
          ("C-c k" . undo-tree-redo)
          ("C-c l" . undo-tree-switch-branch)
          ("C-c ;" . undo-tree-visualize))
-  :ensure t)
-
-(use-package popwin
-  :idle (popwin-mode)
-  :idle-priority 3
   :ensure t)
 
 (use-package bash-completion
@@ -148,6 +156,7 @@
   :idle (shell-command-completion-mode)
   :idle-priority 4
   :config (bash-completion-setup)
+  :defer t
   :ensure t)
 
 (use-package expand-region
@@ -160,9 +169,5 @@
                       (flyspell-mode)
                       (flyspell-buffer)
                       (auto-fill-mode)))
-  :ensure t)
-
-(use-package google-c-style
-  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
   :defer t
   :ensure t)

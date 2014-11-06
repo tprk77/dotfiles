@@ -51,6 +51,11 @@
                   (other-frame -1)
                   (select-frame-set-input-focus (selected-frame))))
 
+;; Hook for programming
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (setq show-trailing-whitespace t)))
+
 ;; Hook for C++
 (add-hook 'c++-mode-hook
           (lambda ()

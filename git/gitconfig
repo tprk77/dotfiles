@@ -6,7 +6,8 @@
     ci = commit
     st = status
     br = branch
-    hist = log --pretty="tformat:'%h %ad | %s%d [%an]'" --graph --date=short
+    history = log --pretty="tformat:'%h %ad | %s%d [%an]'" --graph --date=short
+    hs = log --pretty="tformat:'%h %ad | %s%d [%an]'" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
 [push]

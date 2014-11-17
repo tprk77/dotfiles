@@ -51,11 +51,6 @@
                   (other-frame -1)
                   (select-frame-set-input-focus (selected-frame))))
 
-;; Hook for programming
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (setq show-trailing-whitespace t)))
-
 ;; Hook for C++
 (add-hook 'c++-mode-hook
           (lambda ()
@@ -97,6 +92,21 @@
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-after-kill-buffer-p t))
+
+(use-package whitespace
+  :init (add-hook 'prog-mode-hook 'whitespace-mode)
+  :config (setq-default whitespace-style '(face
+                                           trailing
+                                           tabs
+                                           spaces
+                                           lines-tail
+                                           newline
+                                           indentation
+                                           empty
+                                           space-mark
+                                           tab-mark
+                                           newline-mark)
+                        whitespace-line-column 100))
 
 (use-package solarized-theme
   :config (progn

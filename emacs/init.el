@@ -51,6 +51,12 @@
                   (other-frame -1)
                   (select-frame-set-input-focus (selected-frame))))
 
+;; Put backups and autosaves in separate directory
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; Hook for C++
 (add-hook 'c++-mode-hook
           (lambda ()

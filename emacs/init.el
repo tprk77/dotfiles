@@ -8,7 +8,8 @@
 (setq ring-bell-function #'ignore
       inhibit-startup-screen t)
 (setq-default indent-tabs-mode nil
-              tab-width 4)
+              tab-width 4
+              fill-column 100)
 ;; P.S. Use customize for face stuff...
 
 (icomplete-mode)

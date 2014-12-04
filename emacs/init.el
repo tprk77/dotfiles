@@ -5,11 +5,11 @@
         menu-bar-mode
         scroll-bar-mode))
 
-(set-face-attribute 'default nil :height 100)
 (setq ring-bell-function #'ignore
       inhibit-startup-screen t)
 (setq-default indent-tabs-mode nil
               tab-width 4)
+;; P.S. Use customize for face stuff...
 
 (icomplete-mode)
 

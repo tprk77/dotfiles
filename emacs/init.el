@@ -27,11 +27,6 @@
 ;; Don't open logs with nroff
 (add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . fundamental-mode))
 
-;; Add Rethink Lisp indenting... is there a better way to do this?
-(add-to-list 'load-path "~/.emacs.d/")
-(require 'rethink)
-(set-rethink-lisp-indent)
-
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
                 (lambda ()
@@ -114,6 +109,21 @@
          ("C-c M-x" . execute-extended-command))
   :ensure t)
 
+(use-package solarized-theme
+  :config (progn
+            (setq solarized-emphasize-indicators nil)
+            (setq x-underline-at-descent-line t)
+            (load-theme 'solarized-dark t))
+  :ensure t)
+
+(use-package ample-theme
+  :disabled t)
+
+(use-package rethink
+  ;; Probably needs some cleanup... Lisp hook?
+  :config (set-rethink-lisp-indent))
+
+;; Going to load first thing with scratch buffer
 (use-package whitespace
   :init (add-hook 'prog-mode-hook 'whitespace-mode)
   :config (setq-default whitespace-style '(face
@@ -128,16 +138,6 @@
                                            tab-mark
                                            newline-mark)
                         whitespace-line-column 100))
-
-(use-package solarized-theme
-  :config (progn
-            (setq solarized-emphasize-indicators nil)
-            (setq x-underline-at-descent-line t)
-            (load-theme 'solarized-dark t))
-  :ensure t)
-
-(use-package ample-theme
-  :disabled t)
 
 ;; Going to load first thing with scratch buffer
 (use-package auto-indent-mode

@@ -97,7 +97,11 @@
   :config (icomplete-mode))
 
 (use-package ido
-  :config (ido-mode))
+  :config (progn
+            (setq ido-everywhere t
+                  ido-enable-flex-matching t
+                  ido-create-new-buffer 'always)
+            (ido-mode)))
 
 (use-package ido-ubiquitous
   :config (ido-ubiquitous-mode)

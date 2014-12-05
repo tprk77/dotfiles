@@ -12,8 +12,6 @@
               fill-column 100)
 ;; P.S. Use customize for face stuff...
 
-(icomplete-mode)
-
 ;; Auto revert everything (including TAGS)
 (global-auto-revert-mode)
 (setq tags-revert-without-query t)
@@ -99,6 +97,22 @@
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'post-forward
                 uniquify-after-kill-buffer-p t))
+
+(use-package icomplete
+  :config (icomplete-mode))
+
+(use-package ido
+  :config (ido-mode))
+
+(use-package ido-ubiquitous
+  :config (ido-ubiquitous-mode)
+  :ensure t)
+
+(use-package smex
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c M-x" . execute-extended-command))
+  :ensure t)
 
 (use-package whitespace
   :init (add-hook 'prog-mode-hook 'whitespace-mode)

@@ -87,7 +87,9 @@
 (use-package cl-lib)
 
 (use-package custom
-  :config (setq custom-file "~/.emacs.d/custom.el"))
+  :config (progn
+            (setq custom-file "~/.emacs.d/custom.el")
+            (load custom-file)))
 
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'post-forward

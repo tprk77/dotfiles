@@ -213,3 +213,8 @@
                       (auto-fill-mode)))
   :defer t
   :ensure t)
+
+;; Some help for Vim users
+(use-package evil
+  :defer t
+  :ensure t)

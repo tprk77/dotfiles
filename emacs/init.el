@@ -9,7 +9,9 @@
       inhibit-startup-screen t)
 (setq-default indent-tabs-mode nil
               tab-width 4
-              fill-column 100)
+              fill-column 100
+              sentence-end-double-space nil
+              require-final-newline t)
 ;; P.S. Use customize for face stuff...
 
 ;; Auto revert everything (including TAGS)
@@ -51,8 +53,8 @@
 
 ;; Put backups and autosaves in separate directory
 (setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
+      `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
 ;; Hook for C++

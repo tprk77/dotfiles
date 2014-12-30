@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: and
+# key: and
+# key: a
+# --
+(and $0)

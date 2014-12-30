@@ -224,3 +224,13 @@
 (use-package evil
   :defer t
   :ensure t)
+
+(use-package yasnippet
+  :init (progn
+          (add-hook 'lisp-mode-hook 'yas-minor-mode)
+          (add-hook 'lisp-interaction-mode-hook 'yas-minor-mode))
+  :config (progn
+            (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+            (yas-reload-all))
+  :defer t
+  :ensure t)

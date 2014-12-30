@@ -122,6 +122,7 @@
   :ensure t)
 
 (use-package solarized-theme
+  :if window-system
   :config (progn
             (setq solarized-emphasize-indicators nil)
             (setq x-underline-at-descent-line t)

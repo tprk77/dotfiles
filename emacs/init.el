@@ -45,6 +45,10 @@
                   (other-frame -1)
                   (select-frame-set-input-focus (selected-frame))))
 
+;; Multiframe movement with easy bindings
+(global-set-key (kbd "M-o") #'next-multiframe-window)
+(global-set-key (kbd "M-O") #'previous-multiframe-window)
+
 ;; Put backups and autosaves in separate directory
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))

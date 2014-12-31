@@ -235,3 +235,11 @@
             (yas-reload-all))
   :defer t
   :ensure t)
+
+(use-package rosemacs
+  :if (file-exists-p "/opt/ros/indigo/share/emacs/site-lisp")
+  :load-path "/opt/ros/indigo/share/emacs/site-lisp"
+  :commands invoke-rosemacs
+  :config (progn
+            (setq ros-completion-function 'ido-completing-read)
+            (global-set-key (kbd "C-x C-r") ros-keymap)))

@@ -166,6 +166,7 @@
                 blink-matching-paren nil))
 
 (use-package flycheck
+  :defer t
   :init (progn
           (add-hook 'c-mode-hook 'flycheck-mode)
           (add-hook 'c++-mode-hook  'flycheck-mode))
@@ -173,28 +174,27 @@
                     (lambda ()
                       (setq flycheck-clang-language-standard "c++11"
                             flycheck-gcc-language-standard "c++11")))
-  :defer t
   :ensure t)
 
 (use-package google-c-style
-  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
   :defer t
+  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
   :ensure t)
 
 (use-package popwin
-  :idle (popwin-mode)
-  :idle-priority 2
   ;; Popwin appears to be missing this autoload
   :commands popwin-mode
+  :idle (popwin-mode)
+  :idle-priority 2
   :ensure t)
 
 (use-package undo-tree
-  :idle (global-undo-tree-mode)
-  :idle-priority 3
   :bind (("C-c j" . undo-tree-undo)
          ("C-c k" . undo-tree-redo)
          ("C-c l" . undo-tree-switch-branch)
          ("C-c ;" . undo-tree-visualize))
+  :idle (global-undo-tree-mode)
+  :idle-priority 3
   :ensure t)
 
 (use-package bash-completion
@@ -202,10 +202,10 @@
   :ensure t)
 
 (use-package shell-command
+  :defer t
   :idle (shell-command-completion-mode)
   :idle-priority 4
   :config (bash-completion-setup)
-  :defer t
   :ensure t)
 
 (use-package expand-region
@@ -213,12 +213,12 @@
   :ensure t)
 
 (use-package markdown-mode
+  :defer t
   :config (add-hook 'markdown-mode-hook
                     (lambda ()
                       (flyspell-mode)
                       (flyspell-buffer)
                       (auto-fill-mode)))
-  :defer t
   :ensure t)
 
 ;; Some help for Vim users
@@ -227,13 +227,13 @@
   :ensure t)
 
 (use-package yasnippet
+  :defer t
   :init (progn
           (add-hook 'lisp-mode-hook 'yas-minor-mode)
           (add-hook 'lisp-interaction-mode-hook 'yas-minor-mode))
   :config (progn
             (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
             (yas-reload-all))
-  :defer t
   :ensure t)
 
 (use-package rosemacs

@@ -240,6 +240,15 @@
   :defer t
   :ensure t)
 
+(use-package slime
+  :defer t
+  :config (progn
+            (setq inferior-lisp-program "/usr/bin/sbcl")
+            ;; Not sure why I need to call this...
+            (slime-setup '(slime-fancy
+                           slime-asdf)))
+  :ensure t)
+
 (use-package rosemacs
   :if (file-exists-p "/opt/ros/indigo/share/emacs/site-lisp")
   :load-path "/opt/ros/indigo/share/emacs/site-lisp"

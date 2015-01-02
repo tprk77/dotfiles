@@ -1,17 +1,20 @@
 ;;; Personal Customizations
 
-(mapc (lambda (mode) (when (fboundp mode) (apply mode '(-1))))
-      '(tool-bar-mode
-        menu-bar-mode
-        scroll-bar-mode))
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 (setq ring-bell-function #'ignore
-      inhibit-startup-screen t)
+      inhibit-startup-screen t
+      initial-major-mode #'text-mode
+      initial-scratch-message nil)
+
 (setq-default indent-tabs-mode nil
               tab-width 4
               fill-column 100
               sentence-end-double-space nil
               require-final-newline t)
+
 ;; P.S. Use customize for face stuff...
 
 ;; Auto revert everything (including TAGS)

@@ -236,6 +236,10 @@
             (yas-reload-all))
   :ensure t)
 
+(use-package magit
+  :defer t
+  :ensure t)
+
 (use-package rosemacs
   :if (file-exists-p "/opt/ros/indigo/share/emacs/site-lisp")
   :load-path "/opt/ros/indigo/share/emacs/site-lisp"

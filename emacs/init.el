@@ -212,7 +212,7 @@
   :ensure t)
 
 (use-package expand-region
-  :bind ("C-c e" . er/expand-region)
+  :bind ("C-=" . er/expand-region)
   :ensure t)
 
 (use-package markdown-mode

@@ -24,13 +24,13 @@
 ;; Smoother scrolling
 (setq mouse-wheel-scroll-amount '(4 ((shift) . 4)) ; four lines at a time
       mouse-wheel-progressive-speed nil ; don't accelerate scrolling
-      mouse-wheel-follow-mouse 't ; scroll window under mouse
+      mouse-wheel-follow-mouse t ; scroll window under mouse
       scroll-step 1 ; keyboard scroll one line at a time
       scroll-conservatively 10000 ; don't jump around as much
       auto-window-vscroll nil) ; magic?
 
 ;; Don't open logs with nroff
-(add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . fundamental-mode))
+(add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . #'fundamental-mode))
 
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
@@ -141,7 +141,7 @@
 
 (use-package whitespace
   :defer t
-  :init (add-hook 'prog-mode-hook 'whitespace-mode)
+  :init (add-hook 'prog-mode-hook #'whitespace-mode)
   :config (setq-default whitespace-style '(face
                                            trailing
                                            tabs
@@ -157,22 +157,22 @@
 
 (use-package auto-indent-mode
   :defer t
-  :init (add-hook 'prog-mode-hook 'auto-indent-mode)
+  :init (add-hook 'prog-mode-hook #'auto-indent-mode)
   :config (setq auto-indent-blank-lines-on-move nil)
   :ensure t)
 
 (use-package highlight-parentheses
   ;; This isn't installed through ELPA, because I want to use my fork
   :commands highlight-parentheses-mode
-  :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
+  :init (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
                 blink-matching-paren nil))
 
 (use-package flycheck
   :defer t
   :init (progn
-          (add-hook 'c-mode-hook 'flycheck-mode)
-          (add-hook 'c++-mode-hook  'flycheck-mode))
+          (add-hook 'c-mode-hook #'flycheck-mode)
+          (add-hook 'c++-mode-hook  #'flycheck-mode))
   :config (add-hook 'c++-mode-hook
                     (lambda ()
                       (setq flycheck-clang-language-standard "c++11"
@@ -181,7 +181,7 @@
 
 (use-package google-c-style
   :defer t
-  :init (add-hook 'c-mode-common-hook 'google-set-c-style)
+  :init (add-hook 'c-mode-common-hook #'google-set-c-style)
   :ensure t)
 
 (use-package popwin
@@ -232,8 +232,8 @@
 (use-package yasnippet
   :defer t
   :init (progn
-          (add-hook 'lisp-mode-hook 'yas-minor-mode)
-          (add-hook 'lisp-interaction-mode-hook 'yas-minor-mode))
+          (add-hook 'lisp-mode-hook #'yas-minor-mode)
+          (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode))
   :config (progn
             (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
             (yas-reload-all))
@@ -257,5 +257,5 @@
   :load-path "/opt/ros/indigo/share/emacs/site-lisp"
   :commands invoke-rosemacs
   :config (progn
-            (setq ros-completion-function 'ido-completing-read)
+            (setq ros-completion-function #'ido-completing-read)
             (global-set-key (kbd "C-x C-r") ros-keymap)))

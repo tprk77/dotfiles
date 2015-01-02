@@ -139,8 +139,8 @@
   ;; Probably needs some cleanup... Lisp hook?
   :config (set-rethink-lisp-indent))
 
-;; Going to load first thing with scratch buffer
 (use-package whitespace
+  :defer t
   :init (add-hook 'prog-mode-hook 'whitespace-mode)
   :config (setq-default whitespace-style '(face
                                            trailing
@@ -155,15 +155,15 @@
                                            newline-mark)
                         whitespace-line-column 100))
 
-;; Going to load first thing with scratch buffer
 (use-package auto-indent-mode
+  :defer t
   :init (add-hook 'prog-mode-hook 'auto-indent-mode)
   :config (setq auto-indent-blank-lines-on-move nil)
   :ensure t)
 
-;; Going to load first thing with scratch buffer
 (use-package highlight-parentheses
-  ;; We want to use my fork for this, so no ensure
+  ;; This isn't installed through ELPA, because I want to use my fork
+  :commands highlight-parentheses-mode
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
                 blink-matching-paren nil))

@@ -83,6 +83,9 @@
 (font-lock-add-keywords 'emacs-lisp-mode use-package-font-lock-keywords)
 (font-lock-add-keywords 'lisp-interaction-mode use-package-font-lock-keywords)
 
+;; Use package has built in support diminish
+(use-package diminish)
+
 ;; Secret option to refresh packages
 (let ((refresh-packages-option "--refresh-packages"))
   (when (member refresh-packages-option command-line-args)
@@ -162,7 +165,8 @@
                             space-mark
                             tab-mark
                             newline-mark))
-                        whitespace-line-column 100))
+                        whitespace-line-column 100)
+  :diminish whitespace-mode)
 
 (use-package auto-indent-mode
   :defer t
@@ -175,7 +179,8 @@
   :commands highlight-parentheses-mode
   :init (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
   :config (setq hl-paren-highlight-adjacent t
-                blink-matching-paren nil))
+                blink-matching-paren nil)
+  :diminish highlight-parentheses-mode)
 
 (use-package flycheck
   :defer t
@@ -207,6 +212,7 @@
          ("C-c ;" . undo-tree-visualize))
   :idle (global-undo-tree-mode)
   :idle-priority 3
+  :diminish undo-tree-mode
   :ensure t)
 
 (use-package bash-completion

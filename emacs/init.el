@@ -142,17 +142,26 @@
 (use-package whitespace
   :defer t
   :init (add-hook 'prog-mode-hook #'whitespace-mode)
-  :config (setq-default whitespace-style '(face
-                                           trailing
-                                           tabs
-                                           spaces
-                                           lines-tail
-                                           newline
-                                           indentation
-                                           empty
-                                           space-mark
-                                           tab-mark
-                                           newline-mark)
+  :config (setq-default whitespace-style
+                        (if window-system
+                            '(face
+                              trailing
+                              tabs
+                              spaces
+                              lines-tail
+                              newline
+                              indentation
+                              empty
+                              space-mark
+                              tab-mark
+                              newline-mark)
+                          '(face
+                            trailing
+                            lines-tail
+                            empty
+                            space-mark
+                            tab-mark
+                            newline-mark))
                         whitespace-line-column 100))
 
 (use-package auto-indent-mode

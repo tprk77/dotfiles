@@ -32,6 +32,17 @@
 ;; Don't open logs with nroff
 (add-to-list 'auto-mode-alist '("\\.[0-9]+\\'" . #'fundamental-mode))
 
+;; Typing y is good enough for yes
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't confirm new buffers
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; Don't prompt when there is a process attached to a buffer
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+            kill-buffer-query-functions))
+
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
                 (lambda ()

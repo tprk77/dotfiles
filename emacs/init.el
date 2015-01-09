@@ -226,6 +226,14 @@
   :diminish undo-tree-mode
   :ensure t)
 
+(use-package ace-jump-mode
+  :bind (("C-c SPC" . ace-jump-mode)
+         ("C-x SPC" . ace-jump-mode-pop-mark))
+  :config (progn
+            (ace-jump-mode-enable-mark-sync)
+            (setq ace-jump-mode-gray-background nil))
+  :ensure t)
+
 (use-package bash-completion
   :defer t
   :ensure t)

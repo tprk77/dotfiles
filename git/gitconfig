@@ -6,6 +6,8 @@
     ci = commit
     st = status
     br = branch
+    rb = rebase
+    ri = rebase --interactive
     history = log --pretty="tformat:'%h %ad | %s%d [%an]'" --graph --date=short
     hs = log --pretty="tformat:'%h %ad | %s%d [%an]'" --graph --date=short
     type = cat-file -t

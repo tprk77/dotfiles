@@ -43,6 +43,13 @@
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 
+;; Don't prompt for active process with shells
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (set-process-query-on-exit-flag
+             (get-buffer-process (current-buffer))
+             nil)))
+
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
                 (lambda ()
@@ -64,6 +71,10 @@
 ;; Multiframe movement with easy bindings
 (global-set-key (kbd "M-o") #'next-multiframe-window)
 (global-set-key (kbd "M-O") #'previous-multiframe-window)
+
+;; Some function key bindings
+(global-set-key (kbd "<f1>") #'shell)
+(global-set-key (kbd "<f2>") #'rgrep)
 
 ;; Put backups and autosaves in separate directory
 (setq backup-directory-alist
@@ -274,7 +285,7 @@
   :ensure t)
 
 (use-package magit
-  :defer t
+  :bind (("<f9>" . magit-status))
   :ensure t)
 
 (use-package slime

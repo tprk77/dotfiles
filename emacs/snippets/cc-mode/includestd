@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: includestd
+# key: inc<
+# --
+#include <${1:header.h}>
+$0

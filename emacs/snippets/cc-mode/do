@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: do
+# key: d
+# --
+do {
+  $0
+while (${1:test});

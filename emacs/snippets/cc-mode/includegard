@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: includeguard
+# key: incg
+# key: once
+# expand-env: ((fname (file-name-nondirectory (file-name-sans-extension (buffer-file-name (current-buffer))))))
+# --
+#ifndef `(upcase fname)`_H
+#define `(upcase fname)`_H
+
+$0
+
+#endif

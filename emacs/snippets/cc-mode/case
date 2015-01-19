@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: case
+# key: c
+# --
+case ${2:CONST}:
+  $0
+  break;

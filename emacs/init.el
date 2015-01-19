@@ -193,8 +193,20 @@
 
 (use-package auto-indent-mode
   :defer t
-  :init (add-hook 'prog-mode-hook #'auto-indent-mode)
-  :config (setq auto-indent-blank-lines-on-move nil)
+  :init (progn
+          (add-hook 'prog-mode-hook #'auto-indent-mode)
+          ;; Make C-backspace act like normal backspace, even without auto-indent
+          (global-set-key (kbd "<C-backspace>")
+                          (lookup-key (current-global-map) (kbd "DEL"))))
+  :config (progn
+            (setq auto-indent-blank-lines-on-move nil
+                  auto-indent-backward-delete-char-behavior 'hungry)
+            (defun backward-delete-no-auto-indent (arg)
+              "Do what backspace would normally do, but with auto-indent set to `untabify'."
+              (interactive "p")
+              (let ((auto-indent-backward-delete-char-behavior 'untabify))
+                (funcall (lookup-key (current-global-map) (kbd "DEL")) arg)))
+            (global-set-key (kbd "<C-backspace>") #'backward-delete-no-auto-indent))
   :ensure t)
 
 (use-package highlight-parentheses

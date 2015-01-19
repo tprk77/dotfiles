@@ -299,6 +299,7 @@
 
 (use-package magit
   :bind (("<f9>" . magit-status))
+  :config (setq magit-completing-read-function 'magit-ido-completing-read)
   :ensure t)
 
 (use-package slime

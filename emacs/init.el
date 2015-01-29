@@ -303,6 +303,7 @@
   :ensure t)
 
 (use-package slime
+  :disabled t
   :defer t
   :config (progn
             (setq inferior-lisp-program "/usr/bin/sbcl")

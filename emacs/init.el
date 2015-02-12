@@ -92,6 +92,15 @@
           (lambda ()
             (setq js-indent-level 2)))
 
+;; Hooks for various Lisp modes
+(let ((lisp-hook
+       (lambda ()
+         ;; Fix annoying missing space after comment
+         (setq comment-start "; "))))
+  (add-hook 'lisp-mode-hook lisp-hook)
+  (add-hook 'lisp-interaction-hook lisp-hook)
+  (add-hook 'emacs-lisp-mode-hook lisp-hook))
+
 ;;; Package Support
 
 (add-to-list 'load-path "~/.emacs.d/use-package/")

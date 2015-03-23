@@ -309,9 +309,9 @@
   :ensure t)
 
 (use-package magit
+  ;; This isn't installed through ELPA, because I want to use the "next" branch
   :bind (("<f9>" . magit-status))
-  :config (setq magit-completing-read-function 'magit-ido-completing-read)
-  :ensure t)
+  :config (setq magit-completing-read-function 'magit-ido-completing-read))
 
 (use-package slime
   :disabled t

@@ -97,9 +97,8 @@
        (lambda ()
          ;; Fix annoying missing space after comment
          (setq comment-start "; "))))
-  (add-hook 'lisp-mode-hook lisp-hook)
-  (add-hook 'lisp-interaction-hook lisp-hook)
-  (add-hook 'emacs-lisp-mode-hook lisp-hook))
+  (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
+    (add-hook hook lisp-hook)))
 
 ;;; Package Support
 
@@ -204,17 +203,18 @@
   :defer t
   :init (progn
           (add-hook 'prog-mode-hook #'auto-indent-mode)
-          ;; Make C-backspace act like normal backspace, even without auto-indent
+          ;; Make C-backspace act like normal backspace, regardless of auto-indent
           (global-set-key (kbd "<C-backspace>")
                           (lookup-key (current-global-map) (kbd "DEL"))))
   :config (progn
-            (setq auto-indent-blank-lines-on-move nil
+            (setq auto-indent-assign-indent-level-variables nil
+                  auto-indent-blank-lines-on-move nil
                   auto-indent-backward-delete-char-behavior 'hungry)
             (defun backward-delete-no-auto-indent (arg)
               "Do what backspace would normally do, but with auto-indent set to `untabify'."
               (interactive "p")
               (let ((auto-indent-backward-delete-char-behavior 'untabify))
-                (funcall (lookup-key (current-global-map) (kbd "DEL")) arg)))
+                (funcall (key-binding (kbd "DEL")) arg)))
             (global-set-key (kbd "<C-backspace>") #'backward-delete-no-auto-indent))
   :ensure t)
 

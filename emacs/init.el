@@ -278,6 +278,9 @@
   :config (bash-completion-setup)
   :ensure t)
 
+(use-package shell-select
+  :bind ("<f1>" . shell-select-switch-shell))
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region)
   :ensure t)

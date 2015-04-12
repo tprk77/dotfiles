@@ -7,3 +7,6 @@
 [submodule "emacs/plugins/magit"]
 	path = emacs/plugins/magit
 	url = https://github.com/magit/magit.git
+[submodule "emacs/plugins/shell-select"]
+	path = emacs/plugins/shell-select
+	url = git@github.com:tprk77/shell-select.git

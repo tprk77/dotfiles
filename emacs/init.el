@@ -50,6 +50,9 @@
              (get-buffer-process (current-buffer))
              nil)))
 
+;; Do prompt to kill emacs!
+(setq confirm-kill-emacs 'y-or-n-p)
+
 ;; Allow C-x C-o to go to the last window
 (global-set-key (kbd "C-x C-o")
                 (lambda ()

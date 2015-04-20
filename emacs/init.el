@@ -230,7 +230,10 @@
   :defer t
   :init (progn
           (add-hook 'c-mode-hook #'flycheck-mode)
-          (add-hook 'c++-mode-hook  #'flycheck-mode))
+          (add-hook 'c++-mode-hook  #'flycheck-mode)
+          ;; Javascript requires JSHint
+          (add-hook 'js-mode-hook  #'flycheck-mode)
+          (add-hook 'js2-mode-hook  #'flycheck-mode))
   :config (add-hook 'c++-mode-hook
                     (lambda ()
                       (setq flycheck-clang-language-standard "c++11"

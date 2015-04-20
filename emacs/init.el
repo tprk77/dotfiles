@@ -310,7 +310,9 @@
           (add-hook 'lisp-mode-hook #'yas-minor-mode)
           (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode)
           (add-hook 'c-mode-hook #'yas-minor-mode)
-          (add-hook 'c++-mode-hook #'yas-minor-mode))
+          (add-hook 'c++-mode-hook #'yas-minor-mode)
+          (add-hook 'js-mode-hook #'yas-minor-mode)
+          (add-hook 'js2-mode-hook #'yas-minor-mode))
   :config (progn
             (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
             (yas-reload-all))

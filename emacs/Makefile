@@ -6,7 +6,6 @@ all:
 	rm -rf ~/.emacs.d/
 	mkdir ~/.emacs.d/
 	cp init.el -t ~/.emacs.d/
-	cp -R use-package/ -t ~/.emacs.d/
 	cp -R plugins/ -t ~/.emacs.d/
 	cp -R snippets/ -t ~/.emacs.d/
 	if [ -f /tmp/custom.el ]; then mv /tmp/custom.el ~/.emacs.d/custom.el; else touch ~/.emacs.d/custom.el; fi

@@ -102,19 +102,19 @@
 
 ;;; Package Support
 
-(add-to-list 'load-path "~/.emacs.d/use-package/")
 (let ((default-directory "~/.emacs.d/plugins/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
 (font-lock-add-keywords 'emacs-lisp-mode use-package-font-lock-keywords)
 (font-lock-add-keywords 'lisp-interaction-mode use-package-font-lock-keywords)
-
-;; Use package has built in support diminish
-(use-package diminish)
 
 ;; Secret option to refresh packages
 (let ((refresh-packages-option "--refresh-packages"))

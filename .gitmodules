@@ -1,5 +1,5 @@
 [submodule "emacs/use-package"]
-	path = emacs/use-package
+	path = emacs/plugins/use-package
 	url = https://github.com/jwiegley/use-package.git
 [submodule "emacs/plugins/highlight-parentheses"]
 	path = emacs/plugins/highlight-parentheses
@@ -10,3 +10,6 @@
 [submodule "emacs/plugins/shell-select"]
 	path = emacs/plugins/shell-select
 	url = git@github.com:tprk77/shell-select.git
+[submodule "emacs/plugins/diminish"]
+	path = emacs/plugins/diminish
+	url = git@github.com:emacsmirror/diminish.git

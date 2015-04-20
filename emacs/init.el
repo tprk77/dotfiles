@@ -242,7 +242,12 @@
 
 (use-package js2-mode
   :mode "\\.js\\'"
-  :config (setq-default js2-basic-offset 2)
+  :config (progn
+            (setq-default js2-basic-offset 2)
+            (add-hook 'js2-mode-hook
+                      (lambda ()
+                        ;; Rename the terrible Javascript-IDE mode name
+                        (setq mode-name "Js2"))))
   :ensure t)
 
 (use-package google-c-style

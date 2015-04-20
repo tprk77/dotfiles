@@ -237,6 +237,11 @@
                             flycheck-gcc-language-standard "c++11")))
   :ensure t)
 
+(use-package js2-mode
+  :mode "\\.js\\'"
+  :config (setq-default js2-basic-offset 2)
+  :ensure t)
+
 (use-package google-c-style
   :defer t
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)

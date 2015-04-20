@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: jsdoc
+# key: doc
+# --
+/**
+ * ${1:description}
+ * @param {${3:param type}} ${2:param} ${4:param description}
+ * @return {${5:return type}} ${6:return description}
+ */
+$0

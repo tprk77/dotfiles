@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: forin
+# key: fi
+# --
+for (${1:var} in ${2:coll}) {
+  $0
+}

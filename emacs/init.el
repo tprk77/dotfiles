@@ -116,6 +116,7 @@
 (require 'diminish)
 (require 'bind-key)
 
+;; For editing use-package definitions
 (font-lock-add-keywords 'emacs-lisp-mode use-package-font-lock-keywords)
 (font-lock-add-keywords 'lisp-interaction-mode use-package-font-lock-keywords)
 
@@ -177,7 +178,7 @@
   :config (set-rethink-lisp-indent))
 
 (use-package whitespace
-  :defer t
+  :commands whitespace-mode
   :init (add-hook 'prog-mode-hook #'whitespace-mode)
   :config (setq-default whitespace-style
                         (if window-system
@@ -203,7 +204,7 @@
   :diminish whitespace-mode)
 
 (use-package auto-indent-mode
-  :defer t
+  :commands auto-indent-mode
   :init (progn
           (add-hook 'prog-mode-hook #'auto-indent-mode)
           ;; Make C-backspace act like normal backspace, regardless of auto-indent
@@ -230,7 +231,7 @@
   :diminish highlight-parentheses-mode)
 
 (use-package flycheck
-  :defer t
+  :commands flycheck-mode
   :init (progn
           (add-hook 'c-mode-hook #'flycheck-mode)
           (add-hook 'c++-mode-hook  #'flycheck-mode)
@@ -244,7 +245,7 @@
   :ensure t)
 
 (use-package js2-mode
-  :mode "\\.js\\'"
+  :mode ("\\.js\\'" . js2-mode)
   :config (progn
             (setq-default js2-basic-offset 2)
             (add-hook 'js2-mode-hook
@@ -254,24 +255,24 @@
   :ensure t)
 
 (use-package google-c-style
-  :defer t
+  :commands google-set-c-style
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)
   :ensure t)
 
 (use-package popwin
-  ;; Popwin appears to be missing this autoload
+  :defer 1
   :commands popwin-mode
-  :idle (popwin-mode)
-  :idle-priority 2
+  :config (popwin-mode)
   :ensure t)
 
 (use-package undo-tree
+  :defer 2
+  :commands global-undo-tree-mode
   :bind (("C-c j" . undo-tree-undo)
          ("C-c k" . undo-tree-redo)
          ("C-c l" . undo-tree-switch-branch)
          ("C-c ;" . undo-tree-visualize))
-  :idle (global-undo-tree-mode)
-  :idle-priority 3
+  :config (global-undo-tree-mode)
   :diminish undo-tree-mode
   :ensure t)
 
@@ -284,14 +285,15 @@
   :ensure t)
 
 (use-package bash-completion
-  :defer t
+  :commands bash-completion-setup
   :ensure t)
 
 (use-package shell-command
-  :defer t
-  :idle (shell-command-completion-mode)
-  :idle-priority 4
-  :config (bash-completion-setup)
+  :defer 3
+  :commands shell-command-completion-mode
+  :config (progn
+            (shell-command-completion-mode)
+            (bash-completion-setup))
   :ensure t)
 
 (use-package shell-select
@@ -302,7 +304,7 @@
   :ensure t)
 
 (use-package markdown-mode
-  :defer t
+  :mode ("\\.md\\'" . markdown-mode)
   :config (add-hook 'markdown-mode-hook
                     (lambda ()
                       (flyspell-mode)
@@ -312,11 +314,11 @@
 
 ;; Some help for Vim users
 (use-package evil
-  :defer t
+  :commands evil-mode
   :ensure t)
 
 (use-package yasnippet
-  :defer t
+  :commands yas-minor-mode
   :init (progn
           (add-hook 'lisp-mode-hook #'yas-minor-mode)
           (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode)
@@ -331,6 +333,7 @@
 
 (use-package magit
   ;; This isn't installed through ELPA, because I want to use the "next" branch
+  :commands (magit-status magit-blame)
   :bind (("<f9>" . magit-status))
   :config (setq magit-completing-read-function 'magit-ido-completing-read))
 

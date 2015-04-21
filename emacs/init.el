@@ -174,8 +174,9 @@
   :disabled t)
 
 (use-package rethink
-  ;; Probably needs some cleanup... Lisp hook?
-  :config (set-rethink-lisp-indent))
+  :commands set-rethink-lisp-indent
+  :init (dolist (hook '(lisp-mode-hook lisp-interaction-hook))
+            (add-hook hook #'set-rethink-lisp-indent)))
 
 (use-package whitespace
   :commands whitespace-mode

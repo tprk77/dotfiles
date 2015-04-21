@@ -1,10 +1,9 @@
 ;;; rethink.el
 
-;; Some common settings for Rethink Robotics Lisp hackers. Right now this file just sets
-;; some indentation.
+;; Some common settings for Rethink Robotics Lisp hackers. Right now this file
+;; just sets some indentation.
 
-(provide 'rethink)
-
+;;;###autoload
 (defun set-rethink-lisp-indent ()
   (put 'case 'lisp-indent-function 1)
   (put 'until 'lisp-indent-function 1)
@@ -37,3 +36,5 @@
   (put 'do-json-vector 'lisp-indent-function 1)
   (put 'do-json-object 'lisp-indent-function 1)
   (put 'do-json-set 'lisp-indent-function 1))
+
+(provide 'rethink)

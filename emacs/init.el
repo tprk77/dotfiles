@@ -252,7 +252,8 @@
             (add-hook 'js2-mode-hook
                       (lambda ()
                         ;; Rename the terrible Javascript-IDE mode name
-                        (setq mode-name "Js2"))))
+                        (setq mode-name "Js2"
+                              comment-start "// "))))
   :ensure t)
 
 (use-package google-c-style

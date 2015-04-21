@@ -1,7 +1,7 @@
 backupdate := $(shell date +%Y-%m-%d_%H-%M-%S)
 
 all:
-	cd ~ && tar czf .emacs.d.$(backupdate).tar.gz .emacs.d/
+	if [ -d ~/.emacs.d/ ]; then cd ~ && tar czf .emacs.d.$(backupdate).tar.gz .emacs.d/; fi
 	if [ -f ~/.emacs.d/custom.el ]; then mv ~/.emacs.d/custom.el /tmp/custom.el; fi
 	rm -rf ~/.emacs.d/
 	mkdir ~/.emacs.d/

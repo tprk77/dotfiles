@@ -21,6 +21,9 @@
 (global-auto-revert-mode)
 (setq tags-revert-without-query t)
 
+;; Use column numbers
+(column-number-mode)
+
 ;; Smoother scrolling
 (setq mouse-wheel-scroll-amount '(4 ((shift) . 4)) ; four lines at a time
       mouse-wheel-progressive-speed nil ; don't accelerate scrolling

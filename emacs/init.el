@@ -259,6 +259,23 @@
                               comment-start "// "))))
   :ensure t)
 
+(use-package web-mode
+  ;; I'm mostly using this for ReactJS
+  :mode ("\\.jsx\\'" . web-mode)
+  :config (progn
+            (flycheck-define-checker jsxhint-checker
+              "A JSX syntax and style checker based on JSXHint."
+              :command ("jsxhint" source)
+              :error-patterns ((error line-start (1+ nonl) ": line " line
+                                      ", col " column ", " (message) line-end))
+              :modes (web-mode))
+            (add-hook 'web-mode-hook
+                      (lambda ()
+                        (when (string= web-mode-content-type "jsx")
+                          (flycheck-select-checker 'jsxhint-checker)
+                          (flycheck-mode)))))
+  :ensure t)
+
 (use-package google-c-style
   :commands google-set-c-style
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)

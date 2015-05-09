@@ -165,6 +165,13 @@
          ("C-c M-x" . execute-extended-command))
   :ensure t)
 
+(use-package ace-window
+  :bind (("C-c o" . ace-window)
+         ("C-c SPC" . avi-goto-char)
+         ("C-c S-SPC" . avi-goto-line))
+  :config (ace-window-display-mode)
+  :ensure t)
+
 (use-package solarized-theme
   :if window-system
   :config (progn
@@ -303,14 +310,6 @@
          ("C-c ;" . undo-tree-visualize))
   :config (global-undo-tree-mode)
   :diminish undo-tree-mode
-  :ensure t)
-
-(use-package ace-jump-mode
-  :bind (("C-c SPC" . ace-jump-mode)
-         ("C-x SPC" . ace-jump-mode-pop-mark))
-  :config (progn
-            (ace-jump-mode-enable-mark-sync)
-            (setq ace-jump-mode-gray-background nil))
   :ensure t)
 
 (use-package bash-completion

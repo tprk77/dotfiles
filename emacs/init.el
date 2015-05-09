@@ -135,6 +135,17 @@
 
 (use-package cl-lib)
 
+(use-package solarized-theme
+  :if window-system
+  :config (progn
+            (setq solarized-emphasize-indicators nil)
+            (setq x-underline-at-descent-line t)
+            (load-theme 'solarized-dark t))
+  :ensure t)
+
+(use-package ample-theme
+  :disabled t)
+
 (use-package custom
   :config (progn
             (setq custom-file "~/.emacs.d/custom.el")
@@ -172,21 +183,38 @@
   :config (ace-window-display-mode)
   :ensure t)
 
-(use-package solarized-theme
-  :if window-system
-  :config (progn
-            (setq solarized-emphasize-indicators nil)
-            (setq x-underline-at-descent-line t)
-            (load-theme 'solarized-dark t))
+(use-package popwin
+  :defer 1
+  :commands popwin-mode
+  :config (popwin-mode)
   :ensure t)
 
-(use-package ample-theme
-  :disabled t)
+(use-package buffer-move
+  :bind (("C-S-<up>" . buf-move-up)
+         ("C-S-<down>" . buf-move-down)
+         ("C-S-<left>" . buf-move-left)
+         ("C-S-<right>" . buf-move-right))
+  :ensure t)
 
-(use-package rethink
-  :commands set-rethink-lisp-indent
-  :init (dolist (hook '(lisp-mode-hook lisp-interaction-hook))
-            (add-hook hook #'set-rethink-lisp-indent)))
+(use-package undo-tree
+  :defer 2
+  :commands global-undo-tree-mode
+  :bind (("C-c j" . undo-tree-undo)
+         ("C-c k" . undo-tree-redo)
+         ("C-c l" . undo-tree-switch-branch)
+         ("C-c ;" . undo-tree-visualize))
+  :config (global-undo-tree-mode)
+  :diminish undo-tree-mode
+  :ensure t)
+
+(use-package expand-region
+  :bind ("C-=" . er/expand-region)
+  :ensure t)
+
+;; Some help for Vim users
+(use-package evil
+  :commands evil-mode
+  :ensure t)
 
 (use-package whitespace
   :commands whitespace-mode
@@ -255,6 +283,20 @@
                             flycheck-gcc-language-standard "c++11")))
   :ensure t)
 
+(use-package yasnippet
+  :commands yas-minor-mode
+  :init (progn
+          (add-hook 'lisp-mode-hook #'yas-minor-mode)
+          (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode)
+          (add-hook 'c-mode-hook #'yas-minor-mode)
+          (add-hook 'c++-mode-hook #'yas-minor-mode)
+          (add-hook 'js-mode-hook #'yas-minor-mode)
+          (add-hook 'js2-mode-hook #'yas-minor-mode))
+  :config (progn
+            (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+            (yas-reload-all))
+  :ensure t)
+
 (use-package js2-mode
   :mode ("\\.js\\'" . js2-mode)
   :config (progn
@@ -283,33 +325,23 @@
                           (flycheck-mode)))))
   :ensure t)
 
+(use-package markdown-mode
+  :mode ("\\.md\\'" . markdown-mode)
+  :config (add-hook 'markdown-mode-hook
+                    (lambda ()
+                      (flyspell-mode)
+                      (flyspell-buffer)
+                      (auto-fill-mode)))
+  :ensure t)
+
+(use-package rethink
+  :commands set-rethink-lisp-indent
+  :init (dolist (hook '(lisp-mode-hook lisp-interaction-hook))
+          (add-hook hook #'set-rethink-lisp-indent)))
+
 (use-package google-c-style
   :commands google-set-c-style
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)
-  :ensure t)
-
-(use-package popwin
-  :defer 1
-  :commands popwin-mode
-  :config (popwin-mode)
-  :ensure t)
-
-(use-package buffer-move
-  :bind (("C-S-<up>" . buf-move-up)
-         ("C-S-<down>" . buf-move-down)
-         ("C-S-<left>" . buf-move-left)
-         ("C-S-<right>" . buf-move-right))
-  :ensure t)
-
-(use-package undo-tree
-  :defer 2
-  :commands global-undo-tree-mode
-  :bind (("C-c j" . undo-tree-undo)
-         ("C-c k" . undo-tree-redo)
-         ("C-c l" . undo-tree-switch-branch)
-         ("C-c ;" . undo-tree-visualize))
-  :config (global-undo-tree-mode)
-  :diminish undo-tree-mode
   :ensure t)
 
 (use-package bash-completion
@@ -326,38 +358,6 @@
 
 (use-package shell-select
   :bind ("<f1>" . shell-select-dwim))
-
-(use-package expand-region
-  :bind ("C-=" . er/expand-region)
-  :ensure t)
-
-(use-package markdown-mode
-  :mode ("\\.md\\'" . markdown-mode)
-  :config (add-hook 'markdown-mode-hook
-                    (lambda ()
-                      (flyspell-mode)
-                      (flyspell-buffer)
-                      (auto-fill-mode)))
-  :ensure t)
-
-;; Some help for Vim users
-(use-package evil
-  :commands evil-mode
-  :ensure t)
-
-(use-package yasnippet
-  :commands yas-minor-mode
-  :init (progn
-          (add-hook 'lisp-mode-hook #'yas-minor-mode)
-          (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode)
-          (add-hook 'c-mode-hook #'yas-minor-mode)
-          (add-hook 'c++-mode-hook #'yas-minor-mode)
-          (add-hook 'js-mode-hook #'yas-minor-mode)
-          (add-hook 'js2-mode-hook #'yas-minor-mode))
-  :config (progn
-            (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-            (yas-reload-all))
-  :ensure t)
 
 (use-package magit
   ;; This isn't installed through ELPA, because I want to use the "next" branch

@@ -326,7 +326,7 @@
   :ensure t)
 
 (use-package shell-select
-  :bind ("<f1>" . shell-select-switch-shell))
+  :bind ("<f1>" . shell-select-dwim))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region)

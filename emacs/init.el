@@ -344,6 +344,11 @@
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)
   :ensure t)
 
+(use-package comint
+  :config (progn
+            ;; Unbind some of the C-c keys comint-mode obnoxiously binds...
+            (define-key comint-mode-map (kbd "C-c SPC") nil)))
+
 (use-package bash-completion
   :commands bash-completion-setup
   :ensure t)

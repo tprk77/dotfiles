@@ -176,11 +176,21 @@
          ("C-c M-x" . execute-extended-command))
   :ensure t)
 
+(use-package avy
+  :bind (("C-c SPC" . avy-goto-char-2)
+         ("C-c S-SPC" . avy-goto-line))
+  :config (setq avy-style 'at-full)
+  :ensure t)
+
 (use-package ace-window
-  :bind (("C-c o" . ace-window)
-         ("C-c SPC" . avi-goto-char)
-         ("C-c S-SPC" . avi-goto-line))
-  :config (ace-window-display-mode)
+  :bind (("C-c o" . ace-window))
+  :config (progn
+            (ace-window-display-mode)
+            (setq aw-background nil
+                  aw-leading-char-style 'path)
+            ;; Make the font look more like avy-jump
+            (face-spec-set 'aw-leading-char-face
+                           '((t (:foreground "white" :background "#e52b50")))))
   :ensure t)
 
 (use-package popwin

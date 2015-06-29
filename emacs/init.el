@@ -207,6 +207,10 @@
          ("C-S-<right>" . buf-move-right))
   :ensure t)
 
+(use-package scratch
+  :commands scratch
+  :ensure t)
+
 (use-package undo-tree
   :defer 2
   :commands global-undo-tree-mode

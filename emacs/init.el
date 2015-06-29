@@ -226,6 +226,11 @@
   :bind ("C-=" . er/expand-region)
   :ensure t)
 
+(use-package anzu
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :ensure t)
+
 ;; Some help for Vim users
 (use-package evil
   :commands evil-mode

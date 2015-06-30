@@ -262,6 +262,9 @@
                         whitespace-line-column 100)
   :diminish whitespace-mode)
 
+(use-package subword
+  :config (global-subword-mode))
+
 (use-package auto-indent-mode
   :commands auto-indent-mode
   :init (progn

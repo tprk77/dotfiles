@@ -46,6 +46,9 @@
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 
+;; This warning is super annoying
+(add-to-list 'warning-suppress-types '(undo discard-info))
+
 ;; Don't prompt for active process with shells
 (add-hook 'shell-mode-hook
           (lambda ()

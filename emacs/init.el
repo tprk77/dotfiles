@@ -393,10 +393,10 @@
   :bind ("<f1>" . shell-select-dwim))
 
 (use-package magit
-  ;; This isn't installed through ELPA, because I want to use the "next" branch
   :commands (magit-status magit-blame)
-  :bind (("<f9>" . magit-status))
-  :config (setq magit-completing-read-function 'magit-ido-completing-read))
+  :bind ("<f9>" . magit-status)
+  :config (setq magit-completing-read-function 'magit-ido-completing-read)
+  :ensure t)
 
 (use-package slime
   :disabled t

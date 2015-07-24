@@ -47,7 +47,9 @@
             kill-buffer-query-functions))
 
 ;; This warning is super annoying
-(add-to-list 'warning-suppress-types '(undo discard-info))
+(unless (boundp 'warning-suppress-types)
+  (setq warning-suppress-types nil))
+(push '(undo discard-info) warning-suppress-types)
 
 ;; Don't prompt for active process with shells
 (add-hook 'shell-mode-hook

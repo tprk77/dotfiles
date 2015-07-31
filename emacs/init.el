@@ -182,6 +182,25 @@
          ("C-c M-x" . execute-extended-command))
   :ensure t)
 
+(use-package isearch+
+  ;; See also: http://endlessparentheses.com/better-backspace-during-isearch.html
+  :config (define-key isearch-mode-map (kbd "<backspace>")
+            (lambda ()
+              (interactive)
+              (if (= 0 (length isearch-string))
+                  (ding)
+                (setq isearch-string
+                      (substring isearch-string
+                                 0
+                                 (or (isearch-fail-pos) (1- (length isearch-string)))))
+                (setq isearch-message
+                      (mapconcat #'isearch-text-char-description isearch-string "")))
+              (if isearch-other-end (goto-char isearch-other-end))
+              (isearch-search)
+              (isearch-push-state)
+              (isearch-update)))
+  :ensure t)
+
 (use-package avy
   :bind (("C-c SPC" . avy-goto-char-2)
          ("C-c S-SPC" . avy-goto-line))

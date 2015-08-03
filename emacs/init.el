@@ -287,7 +287,8 @@
   :diminish whitespace-mode)
 
 (use-package subword
-  :config (global-subword-mode))
+  :config (global-subword-mode)
+  :diminish subword-mode)
 
 (use-package auto-indent-mode
   :commands auto-indent-mode

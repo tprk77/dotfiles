@@ -418,6 +418,10 @@
   :config (setq magit-completing-read-function 'magit-ido-completing-read)
   :ensure t)
 
+(use-package git-timemachine
+  :bind ("<f10>" . git-timemachine)
+  :ensure t)
+
 (use-package slime
   :disabled t
   :defer t

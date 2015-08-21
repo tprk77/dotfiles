@@ -413,9 +413,12 @@
   :bind ("<f1>" . shell-select-dwim))
 
 (use-package magit
-  :commands (magit-status magit-blame)
+  :commands magit-blame
   :bind ("<f9>" . magit-status)
-  :config (setq magit-completing-read-function 'magit-ido-completing-read)
+  :config (setq magit-completing-read-function 'magit-ido-completing-read
+                magit-revert-buffers t
+                magit-push-always-verify nil
+                magit-pull-arguments '("--rebase"))
   :ensure t)
 
 (use-package git-timemachine

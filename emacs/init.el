@@ -98,11 +98,6 @@
           (lambda ()
             (c-set-offset 'innamespace 0)))
 
-;; Hook for Javascript
-(add-hook 'js-mode-hook
-          (lambda ()
-            (setq js-indent-level 2)))
-
 ;; Hooks for various Lisp modes
 (let ((lisp-hook
        (lambda ()
@@ -348,7 +343,7 @@
 (use-package js2-mode
   :mode ("\\.js\\'" . js2-mode)
   :config (progn
-            (setq-default js2-basic-offset 2)
+            (setq js2-basic-offset 2)
             (add-hook 'js2-mode-hook
                       (lambda ()
                         ;; Rename the terrible Javascript-IDE mode name
@@ -360,6 +355,7 @@
   ;; I'm mostly using this for ReactJS
   :mode ("\\.jsx\\'" . web-mode)
   :config (progn
+            (setq web-mode-code-indent-offset 2)
             (flycheck-define-checker jsxhint-checker
               "A JSX syntax and style checker based on JSXHint."
               :command ("jsxhint" source)

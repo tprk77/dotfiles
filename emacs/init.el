@@ -285,27 +285,6 @@
   :config (global-subword-mode)
   :diminish subword-mode)
 
-(use-package auto-indent-mode
-  :commands auto-indent-mode
-  :init (progn
-          ;; Only use auto-indent in Lisp modes, it doesn't work very well otherwise
-          (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
-            (add-hook hook #'auto-indent-mode))
-          ;; Make C-backspace act like normal backspace, regardless of auto-indent
-          (global-set-key (kbd "<C-backspace>")
-                          (lookup-key (current-global-map) (kbd "DEL"))))
-  :config (progn
-            (setq auto-indent-assign-indent-level-variables nil
-                  auto-indent-blank-lines-on-move nil
-                  auto-indent-backward-delete-char-behavior 'hungry)
-            (defun backward-delete-no-auto-indent (arg)
-              "Do what backspace would normally do, but with auto-indent set to `untabify'."
-              (interactive "p")
-              (let ((auto-indent-backward-delete-char-behavior 'untabify))
-                (funcall (key-binding (kbd "DEL")) arg)))
-            (global-set-key (kbd "<C-backspace>") #'backward-delete-no-auto-indent))
-  :ensure t)
-
 (use-package highlight-parentheses
   ;; This isn't installed through ELPA, because I want to use my fork
   :commands highlight-parentheses-mode

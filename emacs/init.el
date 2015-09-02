@@ -288,7 +288,9 @@
 (use-package auto-indent-mode
   :commands auto-indent-mode
   :init (progn
-          (add-hook 'prog-mode-hook #'auto-indent-mode)
+          ;; Only use auto-indent in Lisp modes, it doesn't work very well otherwise
+          (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
+            (add-hook hook #'auto-indent-mode))
           ;; Make C-backspace act like normal backspace, regardless of auto-indent
           (global-set-key (kbd "<C-backspace>")
                           (lookup-key (current-global-map) (kbd "DEL"))))

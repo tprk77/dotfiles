@@ -246,8 +246,11 @@
   :ensure t)
 
 (use-package anzu
+  :defer 4
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
+  :config (global-anzu-mode)
+  :diminish anzu-mode
   :ensure t)
 
 ;; Some help for Vim users

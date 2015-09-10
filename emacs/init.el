@@ -350,7 +350,8 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package js2-mode
   :mode ("\\.js\\'" . js2-mode)
   :config (progn
-            (setq js2-basic-offset 2)
+            (setq js2-basic-offset 2
+                  js2-indent-switch-body t)
             (add-hook 'js2-mode-hook
                       (lambda ()
                         ;; Rename the terrible Javascript-IDE mode name

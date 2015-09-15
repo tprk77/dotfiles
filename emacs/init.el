@@ -106,6 +106,13 @@
       auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; Hook to fix fill-paragraph for Doxygen style comments
+(let ((doxygen-comment-fix-hook
+       (lambda ()
+         (setq-local paragraph-start "^[ ]*\\(///\\|\\**\\)[ ]*\\([ ]*$\\|@\\)\\|^\f"))))
+  (dolist (hook '(c-mode-common-hook js2-mode-hook))
+    (add-hook hook doxygen-comment-fix-hook)))
+
 ;; Hook to fix C++ namespace indentation
 (let ((namespace-indent-fix-hook
        (lambda ()

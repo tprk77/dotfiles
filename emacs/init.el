@@ -129,6 +129,9 @@ point reaches the beginning or end of the buffer, stop there."
   (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
     (add-hook hook lisp-hook)))
 
+;; Hooks to display functions in some modes
+(add-hook 'prog-mode-hook #'which-func-mode)
+
 ;;; Package Support
 
 (let ((default-directory "~/.emacs.d/plugins/"))

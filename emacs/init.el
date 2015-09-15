@@ -87,28 +87,18 @@
 (global-set-key (kbd "<f1>") #'shell)
 (global-set-key (kbd "<f2>") #'rgrep)
 
-(defun smarter-move-beginning-of-line (arg)
-  "Move point back to indentation of beginning of line.
-
-Move point to the first non-whitespace character on this line.
-If point is already there, move to the beginning of the line.
-Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
+;; Toggle between the beginning of indentation and the beginning of the line
+(global-set-key [remap move-beginning-of-line]
+                (lambda (arg)
+                  (interactive "^p")
+                  (setq arg (or arg 1))
+                  (when (/= arg 1)
+                    (let ((line-move-visual nil))
+                      (forward-line (1- arg))))
+                  (let ((orig-point (point)))
+                    (back-to-indentation)
+                    (when (= orig-point (point))
+                      (move-beginning-of-line 1)))))
 
 ;; Put backups and autosaves in separate directory
 (setq backup-directory-alist
@@ -116,18 +106,18 @@ point reaches the beginning or end of the buffer, stop there."
       auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-;; Hook for C++
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (c-set-offset 'innamespace 0)))
-
-;; Hooks for various Lisp modes
-(let ((lisp-hook
+;; Hook to fix C++ namespace indentation
+(let ((namespace-indent-fix-hook
        (lambda ()
-         ;; Fix annoying missing space after comment
+         (c-set-offset 'innamespace 0))))
+  (add-hook 'c++-mode-hook namespace-indent-fix-hook))
+
+;; Hook to fix missing space after trailing comments in Lisp
+(let ((trailing-comment-fix-hook
+       (lambda ()
          (setq comment-start "; "))))
   (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
-    (add-hook hook lisp-hook)))
+    (add-hook hook trailing-comment-fix-hook)))
 
 ;; Hooks to display functions in some modes
 (add-hook 'prog-mode-hook #'which-func-mode)
@@ -324,12 +314,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package flycheck
   :commands flycheck-mode
-  :init (progn
-          (add-hook 'c-mode-hook #'flycheck-mode)
-          (add-hook 'c++-mode-hook  #'flycheck-mode)
+  :init (dolist (hook '(c-mode-hook
+                        c++-mode-hook
+                        js2-mode-hook))
           ;; Javascript requires JSHint
-          (add-hook 'js-mode-hook  #'flycheck-mode)
-          (add-hook 'js2-mode-hook  #'flycheck-mode))
+          (add-hook hook #'flycheck-mode))
   :config (add-hook 'c++-mode-hook
                     (lambda ()
                       (setq flycheck-clang-language-standard "c++11"

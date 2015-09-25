@@ -334,13 +334,13 @@
 
 (use-package yasnippet
   :commands yas-minor-mode
-  :init (progn
-          (add-hook 'lisp-mode-hook #'yas-minor-mode)
-          (add-hook 'lisp-interaction-mode-hook #'yas-minor-mode)
-          (add-hook 'c-mode-hook #'yas-minor-mode)
-          (add-hook 'c++-mode-hook #'yas-minor-mode)
-          (add-hook 'js-mode-hook #'yas-minor-mode)
-          (add-hook 'js2-mode-hook #'yas-minor-mode))
+  :init (dolist (hook '(lisp-mode-hook
+                        lisp-interaction-hook
+                        c-mode-hook
+                        c++-mode-hook
+                        js2-mode-hook
+                        web-mode-hook))
+          (add-hook hook #'yas-minor-mode))
   :config (progn
             (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
             (yas-reload-all))

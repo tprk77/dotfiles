@@ -362,7 +362,8 @@
   ;; I'm mostly using this for ReactJS
   :mode ("\\.jsx\\'" . web-mode)
   :config (progn
-            (setq web-mode-code-indent-offset 2)
+            (setq web-mode-code-indent-offset 2
+                  web-mode-markup-indent-offset 2)
             (flycheck-define-checker jsxhint-checker
               "A JSX syntax and style checker based on JSXHint."
               :command ("jsxhint" source)

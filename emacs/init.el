@@ -126,6 +126,15 @@
   (dolist (hook '(lisp-mode-hook lisp-interaction-hook emacs-lisp-mode-hook))
     (add-hook hook trailing-comment-fix-hook)))
 
+;; Hook to limit line length for Python (PEP 8)
+(let ((pep8-line-length-fix-hook
+       (lambda ()
+         ;; Reload whitespace-mode
+         (whitespace-mode -1)
+         (setq fill-column 79)
+         (whitespace-mode))))
+  (add-hook 'python-mode-hook pep8-line-length-fix-hook))
+
 ;; Hooks to display functions in some modes
 (add-hook 'prog-mode-hook #'which-func-mode)
 
@@ -304,7 +313,8 @@
                             space-mark
                             tab-mark
                             newline-mark))
-                        whitespace-line-column 100)
+                        ;; Using nil means use fill-column
+                        whitespace-line-column nil)
   :diminish whitespace-mode)
 
 (use-package subword

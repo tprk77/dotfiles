@@ -291,6 +291,10 @@
   :diminish anzu-mode
   :ensure t)
 
+(use-package ag
+  :commands ag
+  :ensure t)
+
 ;; Some help for Vim users
 (use-package evil
   :commands evil-mode

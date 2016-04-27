@@ -135,6 +135,12 @@
          (whitespace-mode))))
   (add-hook 'python-mode-hook pep8-line-length-fix-hook))
 
+;; Hook to fix s-exp movement in Python
+(let ((python-sexp-fix-hook
+       (lambda ()
+         (setq forward-sexp-function nil))))
+  (add-hook 'python-mode-hook python-sexp-fix-hook))
+
 ;; Hooks to display functions in some modes
 (add-hook 'prog-mode-hook #'which-func-mode)
 

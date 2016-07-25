@@ -339,17 +339,32 @@
                 blink-matching-paren nil)
   :diminish highlight-parentheses-mode)
 
+(use-package irony
+  :commands irony-mode
+  :init (dolist (hook '(c-mode-hook c++-mode-hook))
+          (add-hook hook #'irony-mode))
+  :config (add-hook 'irony-mode-hook
+                    (lambda ()
+                      (define-key irony-mode-map [remap completion-at-point]
+                        'irony-completion-at-point-async)
+                      (define-key irony-mode-map [remap complete-symbol]
+                        'irony-completion-at-point-async)
+                      (irony-cdb-autosetup-compile-options)))
+  :ensure t)
+
+(use-package flycheck-irony
+  :commands flycheck-irony-setup
+  :ensure t)
+
 (use-package flycheck
   :commands flycheck-mode
-  :init (dolist (hook '(c-mode-hook
-                        c++-mode-hook
-                        js2-mode-hook))
+  :init (dolist (hook '(c-mode-hook c++-mode-hook js2-mode-hook))
           ;; Javascript requires JSHint
           (add-hook hook #'flycheck-mode))
-  :config (add-hook 'c++-mode-hook
-                    (lambda ()
-                      (setq flycheck-clang-language-standard "c++11"
-                            flycheck-gcc-language-standard "c++11")))
+  :config (progn
+            (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
+            (setq-default flycheck-clang-language-standard "c++11"
+                          flycheck-gcc-language-standard "c++11"))
   :ensure t)
 
 (use-package yasnippet

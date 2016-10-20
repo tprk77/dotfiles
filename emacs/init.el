@@ -467,6 +467,10 @@
   :bind ("<f10>" . git-timemachine)
   :ensure t)
 
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :config (setq python-shell-interpreter "python3"))
+
 (use-package slime
   :disabled t
   :defer t

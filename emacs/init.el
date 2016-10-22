@@ -22,6 +22,9 @@
                 "   " mode-line-position "   " mode-line-modes mode-line-misc-info
                 mode-line-end-spaces))
 
+;; Fix default JS indent (for JSON files)
+(setq-default js-indent-level 2)
+
 ;; P.S. Use customize for face stuff...
 
 ;; Auto revert everything (including TAGS)

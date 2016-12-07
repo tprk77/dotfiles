@@ -154,6 +154,15 @@
 ;; Hooks to display functions in some modes
 (add-hook 'prog-mode-hook #'which-func-mode)
 
+;; Hook to find other files in C and C++
+(global-set-key (kbd "C-M-o") nil)
+(setq-default ff-ignore-include t)
+(let ((find-other-files-hook
+       (lambda ()
+         (local-set-key (kbd "C-M-o") #'ff-get-other-file))))
+  (dolist (hook '(c-mode-hook c++-mode-hook))
+    (add-hook hook find-other-files-hook)))
+
 ;; Monkey patch `vc-git-conflicted-files' because it sucks!
 ;; See Emacs bug #21559: http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
 (message "Monkey patching `vc-git-conflicted-files' for Emacs bug #21559!")

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Add repo and key
+# Add key and repo
+wget -q -O - "http://deb.opera.com/archive.key" | sudo apt-key add -
 sudo add-apt-repository 'deb http://deb.opera.com/opera-stable/ stable non-free'
-wget -qO- http://deb.opera.com/archive.key | sudo apt-key add -
 
 # Update and install, this will also install some TTF fonts
 sudo apt-get update

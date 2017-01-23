@@ -14,14 +14,14 @@ BETTER_PUBLIC_NAME="public"
 BETTER_TEMPLATES_NAME="templates"
 BETTER_VIDEOS_NAME="vids"
 
-mv -n ~/Desktop ~/${BETTER_DESKTOP_NAME}
-mv -n ~/Documents ~/${BETTER_DOCUMENTS_NAME}
-mv -n ~/Downloads ~/${BETTER_DOWNLOADS_NAME}
-mv -n ~/Music ~/${BETTER_MUSIC_NAME}
-mv -n ~/Pictures ~/${BETTER_PICTURES_NAME}
-mv -n ~/Public ~/${BETTER_PUBLIC_NAME}
-mv -n ~/Templates ~/${BETTER_TEMPLATES_NAME}
-mv -n ~/Videos ~/${BETTER_VIDEOS_NAME}
+mv -n ~/Desktop -T ~/${BETTER_DESKTOP_NAME}
+mv -n ~/Documents -T ~/${BETTER_DOCUMENTS_NAME}
+mv -n ~/Downloads -T ~/${BETTER_DOWNLOADS_NAME}
+mv -n ~/Music -T ~/${BETTER_MUSIC_NAME}
+mv -n ~/Pictures -T ~/${BETTER_PICTURES_NAME}
+mv -n ~/Public -T ~/${BETTER_PUBLIC_NAME}
+mv -n ~/Templates -T ~/${BETTER_TEMPLATES_NAME}
+mv -n ~/Videos -T ~/${BETTER_VIDEOS_NAME}
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     sed -e "s;Desktop;${BETTER_DESKTOP_NAME};" \

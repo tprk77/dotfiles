@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: case
-# key: c
+# key: ca
 # --
 case ${2:CONST}:
   $0

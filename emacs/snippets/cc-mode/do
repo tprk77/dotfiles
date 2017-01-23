@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: do
-# key: d
+# key: do
 # --
 do {
   $0

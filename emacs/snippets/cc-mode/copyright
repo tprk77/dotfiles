@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: copyright
+# key: cpy
+# --
+// Copyright [${1:YYYY}] ${2:Name Here}

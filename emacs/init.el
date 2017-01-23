@@ -488,6 +488,10 @@ buffer is not visiting a file."
   :init (dolist (hook '(lisp-mode-hook lisp-interaction-hook))
           (add-hook hook #'set-rethink-lisp-indent)))
 
+(use-package ori-emacs
+  :bind ("<f5>" . ori-oclang-format)
+  :config (ori-setup-variables))
+
 (use-package google-c-style
   :commands google-set-c-style
   :init (add-hook 'c-mode-common-hook #'google-set-c-style)

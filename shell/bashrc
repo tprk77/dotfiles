@@ -1,4 +1,4 @@
-# change some stuff specific to the Emacs shell
+# Change some stuff specific to the Emacs shell
 if [ -n "$INSIDE_EMACS" ]; then
     export PAGER=/bin/cat
     export MANPAGER=/bin/cat

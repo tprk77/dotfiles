@@ -3,12 +3,12 @@
 # Fixes the default keyboard shortcuts to work with Emacs,
 # etc. Removes annoying defaults. Maybe adds other shortcuts.
 
-# zero all shortcuts
+# Zero all shortcuts
 for keybinding in $(gsettings list-keys org.gnome.desktop.wm.keybindings); do
     dconf write /org/gnome/desktop/wm/keybindings/$keybinding "@as []"
 done
 
-# add back shortcuts we want
+# Add back shortcuts we want
 dconf write /org/gnome/desktop/wm/keybindings/close "@as ['<Alt>F4']"
 dconf write /org/gnome/desktop/wm/keybindings/panel-run-dialog "@as ['<Alt>F2']"
 dconf write /org/gnome/desktop/wm/keybindings/show-desktop "@as ['<Super>d']"

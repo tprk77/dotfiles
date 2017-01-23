@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: for
-# key: f
+# key: fo
 # --
 for (${1:var}; ${2:test}; ${3:inc}) {
   $0

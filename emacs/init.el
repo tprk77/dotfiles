@@ -490,7 +490,7 @@ buffer is not visiting a file."
 
 (use-package ori-emacs
   :bind ("<f5>" . ori-oclang-format)
-  :config (ori-setup-variables))
+  :config (ori-setup-vars))
 
 (use-package google-c-style
   :commands google-set-c-style

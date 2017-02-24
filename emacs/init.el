@@ -518,8 +518,9 @@ buffer is not visiting a file."
   :bind ("<f1>" . shell-select-dwim))
 
 (use-package magit
-  :commands magit-blame
-  :bind ("<f9>" . magit-status)
+  :bind (("<f9>" . magit-status)
+         ("<f10>" . magit-blame)
+         ("<f11>" . magit-log-buffer-file))
   :config (setq magit-completing-read-function 'magit-ido-completing-read
                 magit-revert-buffers t
                 magit-push-always-verify nil
@@ -527,7 +528,7 @@ buffer is not visiting a file."
   :ensure t)
 
 (use-package git-timemachine
-  :bind ("<f10>" . git-timemachine)
+  :bind ("<f12>" . git-timemachine)
   :ensure t)
 
 (use-package python

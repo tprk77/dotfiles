@@ -349,6 +349,12 @@ buffer is not visiting a file."
   :commands ag
   :ensure t)
 
+(use-package wgrep
+  :ensure t)
+
+(use-package wgrep-ag
+  :ensure t)
+
 ;; Some help for Vim users
 (use-package evil
   :commands evil-mode

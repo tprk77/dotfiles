@@ -530,7 +530,8 @@ buffer is not visiting a file."
   :config (setq magit-completing-read-function 'magit-ido-completing-read
                 magit-revert-buffers t
                 magit-push-always-verify nil
-                magit-pull-arguments '("--rebase"))
+                magit-pull-arguments '("--rebase")
+                git-commit-fill-column 70)
   :ensure t)
 
 (use-package git-timemachine

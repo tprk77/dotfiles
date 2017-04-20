@@ -23,6 +23,16 @@ mv -n ~/Public -T ~/${BETTER_PUBLIC_NAME}
 mv -n ~/Templates -T ~/${BETTER_TEMPLATES_NAME}
 mv -n ~/Videos -T ~/${BETTER_VIDEOS_NAME}
 
+# If we couldn't move them, try deleting
+rmdir --ignore-fail-on-non-empty ~/Desktop
+rmdir --ignore-fail-on-non-empty ~/Documents
+rmdir --ignore-fail-on-non-empty ~/Downloads
+rmdir --ignore-fail-on-non-empty ~/Music
+rmdir --ignore-fail-on-non-empty ~/Pictures
+rmdir --ignore-fail-on-non-empty ~/Public
+rmdir --ignore-fail-on-non-empty ~/Templates
+rmdir --ignore-fail-on-non-empty ~/Videos
+
 if [ -f ~/.config/user-dirs.dirs ]; then
     sed -e "s;Desktop;${BETTER_DESKTOP_NAME};" \
         -e "s;Documents;${BETTER_DOCUMENTS_NAME};" \

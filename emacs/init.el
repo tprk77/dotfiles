@@ -259,7 +259,7 @@ buffer is not visiting a file."
                   ido-default-buffer-method 'selected-window)
             (ido-mode)))
 
-(use-package ido-ubiquitous
+(use-package ido-completing-read+
   :config (ido-ubiquitous-mode)
   :ensure t)
 

@@ -461,6 +461,12 @@ buffer is not visiting a file."
                               comment-start "// "))))
   :ensure t)
 
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode)
+  ;; TODO Disable this mode when there are really long lines (it's super slow)
+  :config (setq json-reformat:indent-width 2)
+  :ensure t)
+
 (use-package web-mode
   ;; I'm mostly using this for ReactJS
   :mode ("\\.jsx\\'" . web-mode)

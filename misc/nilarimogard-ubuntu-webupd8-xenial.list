@@ -1,0 +1,7 @@
+# FROM: sudo add-apt-repository ppa:nilarimogard/webupd8
+
+# SEE ALSO: /etc/apt/preferences.d/webupd8-pin-400
+# AND: http://askubuntu.com/a/170265/182607
+
+deb http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu xenial main
+# deb-src http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu xenial main

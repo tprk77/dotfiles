@@ -578,3 +578,8 @@ buffer is not visiting a file."
   :config (progn
             (setq ros-completion-function #'ido-completing-read)
             (global-set-key (kbd "C-x C-r") ros-keymap)))
+
+;; TODO set sh-default-offset
+;; https://keramida.wordpress.com/2008/08/08/tweaking-shell-script-indentation-in-gnu-emacs/
+;; TODO Fill Column Indicator: fci-mode
+;; https://www.emacswiki.org/emacs/FillColumnIndicator

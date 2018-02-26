@@ -15,6 +15,9 @@
               sentence-end-double-space nil
               require-final-newline t)
 
+;; Disable lockfiles (I don't really use them, and they're breaking "~compile" in SBT)
+(setq create-lockfiles nil)
+
 ;; Remove VC stuff from mode line
 (setq-default mode-line-format
               '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified
@@ -561,3 +564,12 @@ buffer is not visiting a file."
   :config (progn
             (setq ros-completion-function #'ido-completing-read)
             (global-set-key (kbd "C-x C-r") ros-keymap)))
+
+(use-package scala-mode
+  :mode ("\\.scala\\'" . scala-mode)
+  :pin melpa
+  :ensure t)
+
+(use-package sbt-mode
+  :commands (sbt-start run-scala)
+  :ensure t)

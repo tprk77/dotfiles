@@ -10,6 +10,10 @@ fi
 # Install Keepass2 (mono-complete is technically for the Keefox plugin)
 sudo apt-get install -y keepass2 mono-complete
 
+
+# TODO NEW INSTRUCTIONS!
+# https://forum.kee.pm/t/installing-kee-instructions/23
+
 # Install Keefox plugin, if it's there
 keefox_plgx=$(find ~/.mozilla/ -name "KeePassRPC.plgx" | head -n 1)
 if [ -n "$keefox_plgx" ]; then

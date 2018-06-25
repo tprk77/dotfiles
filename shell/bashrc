@@ -3,6 +3,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     export PAGER=/bin/cat
     export MANPAGER=/bin/cat
     export GIT_PAGER=/bin/cat
+    export SYSTEMD_PAGER=/bin/cat
     #export EDITOR=emacsclient
     #alias git="git --no-pager"
 fi

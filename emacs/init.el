@@ -425,14 +425,20 @@ buffer is not visiting a file."
 
 (use-package yasnippet
   :commands yas-minor-mode
-  :init (dolist (hook '(lisp-mode-hook
-                        lisp-interaction-hook
-                        c-mode-hook
-                        c++-mode-hook
-                        js2-mode-hook
-                        web-mode-hook))
-          (add-hook hook #'yas-minor-mode))
+  :init (progn
+          (dolist (hook '(lisp-mode-hook
+                          lisp-interaction-hook
+                          c-mode-hook
+                          c++-mode-hook
+                          js2-mode-hook
+                          web-mode-hook))
+            (add-hook hook #'yas-minor-mode))
+          ;; ;; Apparently this needs to run now for expansion to work
+          ;; (yas-global-mode)
+          )
   :config (progn
+            ;; Apparently this needs to run now for expansion to work
+            (yas-global-mode)
             (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
             (yas-reload-all))
   :ensure t)

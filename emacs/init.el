@@ -406,10 +406,6 @@ buffer is not visiting a file."
   :config (progn
             (add-hook 'irony-mode-hook
                       (lambda ()
-                        (define-key irony-mode-map [remap completion-at-point]
-                          'irony-completion-at-point-async)
-                        (define-key irony-mode-map [remap complete-symbol]
-                          'irony-completion-at-point-async)
                         (irony-cdb-autosetup-compile-options)))
             ;; For some reason Irony is not detecting C++11, so force it
             (setq-default irony-additional-clang-options '("-std=c++11")))

@@ -499,7 +499,10 @@ buffer is not visiting a file."
 
 (use-package google-c-style
   :commands google-set-c-style
-  :init (add-hook 'c-mode-common-hook #'google-set-c-style)
+  :init (add-hook 'c-mode-common-hook
+                  (lambda ()
+                    (google-set-c-style)
+                    (c-set-offset 'inextern-lang 0)))
   :ensure t)
 
 (use-package comint

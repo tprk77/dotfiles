@@ -497,13 +497,13 @@ buffer is not visiting a file."
   :bind ("<f5>" . ori-oclang-format)
   :config (ori-setup-vars))
 
-(use-package google-c-style
-  :commands google-set-c-style
-  :init (add-hook 'c-mode-common-hook
-                  (lambda ()
-                    (google-set-c-style)
-                    (c-set-offset 'inextern-lang 0)))
-  :ensure t)
+;; (use-package google-c-style
+;;   :commands google-set-c-style
+;;   :init (add-hook 'c-mode-common-hook
+;;                   (lambda ()
+;;                     (google-set-c-style)
+;;                     (c-set-offset 'inextern-lang 0)))
+;;   :ensure t)
 
 (use-package comint
   :config (progn

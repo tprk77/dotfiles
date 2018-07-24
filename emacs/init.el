@@ -514,13 +514,13 @@ buffer is not visiting a file."
   :commands bash-completion-setup
   :ensure t)
 
-(use-package shell-command
-  :defer 3
-  :commands shell-command-completion-mode
-  :config (progn
-            (shell-command-completion-mode)
-            (bash-completion-setup))
-  :ensure t)
+;; (use-package shell-command
+;;   :defer 3
+;;   :commands shell-command-completion-mode
+;;   :config (progn
+;;             (shell-command-completion-mode)
+;;             (bash-completion-setup))
+;;   :ensure t)
 
 (use-package shell-select
   :bind ("<f1>" . shell-select-dwim))

@@ -10,3 +10,6 @@
 [submodule "emacs/plugins/diminish"]
 	path = emacs/plugins/diminish
 	url = git@github.com:emacsmirror/diminish.git
+[submodule "emacs/plugins/google-styleguide"]
+	path = emacs/plugins/google-styleguide
+	url = git@github.com:google/styleguide.git

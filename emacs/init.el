@@ -220,7 +220,8 @@ buffer is not visiting a file."
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (eval-when-compile
   (require 'use-package))

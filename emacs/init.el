@@ -220,9 +220,8 @@ buffer is not visiting a file."
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(setq use-package-always-pin "melpa-stable")
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(package-initialize)
 
 (eval-when-compile
   (require 'use-package))
@@ -238,8 +237,6 @@ buffer is not visiting a file."
   (when (member refresh-packages-option command-line-args)
     (delete refresh-packages-option command-line-args)
     (package-refresh-contents)))
-
-(package-initialize)
 
 ;;; Packages
 

@@ -13,3 +13,6 @@
 [submodule "emacs/plugins/google-styleguide"]
 	path = emacs/plugins/google-styleguide
 	url = git@github.com:google/styleguide.git
+[submodule "emacs/plugins/shell-command"]
+	path = emacs/plugins/shell-command
+	url = git@github.com:emacsorphanage/shell-command.git

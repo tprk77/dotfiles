@@ -222,6 +222,7 @@ buffer is not visiting a file."
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(setq use-package-always-pin "melpa-stable")
 
 (eval-when-compile
   (require 'use-package))

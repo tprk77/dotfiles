@@ -317,9 +317,10 @@ buffer is not visiting a file."
          ("C-S-<right>" . buf-move-right))
   :ensure t)
 
-(use-package scratch
-  :commands scratch
-  :ensure t)
+;; Scratch doesn't appear to be downloadable right now...
+;; (use-package scratch
+;;   :commands scratch
+;;   :ensure t)
 
 (use-package undo-tree
   :defer 2

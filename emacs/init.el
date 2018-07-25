@@ -544,6 +544,22 @@ buffer is not visiting a file."
   :mode ("\\.py\\'" . python-mode)
   :config (setq python-shell-interpreter "python3"))
 
+(use-package company
+  ;; I'm currently only using Company with Tide
+  :commands company-mode
+  :ensure t)
+
+(use-package tide
+  :commands tide-mode
+  :init (add-hook 'typescript-mode-hook #'tide-mode)
+  :config (progn
+            (tide-setup)
+            (add-hook 'tide-mode-hook
+                      (lambda ()
+                        (company-mode)
+                        (flycheck-mode))))
+  :ensure t)
+
 (use-package slime
   :disabled t
   :defer t

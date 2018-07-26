@@ -511,7 +511,9 @@ buffer is not visiting a file."
             (define-key comint-mode-map (kbd "C-c SPC") nil)))
 
 (use-package bash-completion
-  :commands bash-completion-setup
+  :commands (bash-completion-setup bash-completion-dynamic-complete)
+  ;; TODO Bash completion seems to be broken at the moment
+  ;; :init (add-hook 'shell-dynamic-complete-functions #'bash-completion-dynamic-complete)
   :ensure t)
 
 (use-package shell-command

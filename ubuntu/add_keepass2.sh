@@ -24,3 +24,6 @@ if [ -n "$keefox_plgx" ]; then
 else
     echo "Could not find Keefox plugin"
 fi
+
+# TODO
+# curl -s https://api.github.com/repos/kee-org/keepassrpc/releases/latest | jq -r ".assets[] | select(.name | test(\"KeePassRPC.plgx\")) | .browser_download_url" | xargs sudo curl -s -L -o "/usr/lib/keepass2/plugins/KeePassRPC.plgx"

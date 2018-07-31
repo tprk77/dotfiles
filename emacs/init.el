@@ -553,6 +553,7 @@ buffer is not visiting a file."
   :commands tide-mode
   :init (add-hook 'typescript-mode-hook #'tide-mode)
   :config (progn
+            (setq typescript-indent-level 2)
             (tide-setup)
             (add-hook 'tide-mode-hook
                       (lambda ()

@@ -150,7 +150,7 @@ buffer is not visiting a file."
 (let ((doxygen-comment-fix-hook
        (lambda ()
          (setq-local paragraph-start "^[ ]*\\(///\\|\\**\\)[ ]*\\([ ]*$\\|@\\)\\|^\f"))))
-  (dolist (hook '(c-mode-common-hook js2-mode-hook))
+  (dolist (hook '(c-mode-common-hook js2-mode-hook typescript-mode-hook))
     (add-hook hook doxygen-comment-fix-hook)))
 
 ;; Hook to fix C++ namespace indentation

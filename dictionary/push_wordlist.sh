@@ -7,16 +7,18 @@ set -o pipefail
 SCRIPT_DIR="$(dirname "$(readlink -f "${0}")")"
 
 WORDLIST_TXT="${SCRIPT_DIR}/wordlist.txt"
-ASPELL_DICT="~/.aspell.en.pws"
-FIREFOX_DICT="~/.mozilla/firefox/*.default/persdict.dat"
+ASPELL_DICT="${HOME}/.aspell.en.pws"
 
-# Convert these to actual filenames
-ASPELL_DICT=$(eval "ls -1 ${ASPELL_DICT}" | head -n 1)
-FIREFOX_DICT=$(eval "ls -1 ${FIREFOX_DICT}" | head -n 1)
+# For Firefox, assume we only care about the first profile
+FIREFOX_PROFILE=$(
+    find "${HOME}/.mozilla/firefox/" -maxdepth 1 -type d -name "*.default" | head -n 1)
+FIREFOX_DICT=$(if [ -n "${FIREFOX_PROFILE}" ]; then echo "${FIREFOX_PROFILE}/persdict.dat"; fi)
 
 # Write wordlist to Aspell dictionary
 echo "personal_ws-1.1 en 0" > "${ASPELL_DICT}"
 cat "${WORDLIST_TXT}" >> "${ASPELL_DICT}"
 
 # Write to Firefox dictionary
-cat "${WORDLIST_TXT}" > "${FIREFOX_DICT}"
+if [ -n "${FIREFOX_DICT}" ]; then
+    cat "${WORDLIST_TXT}" > "${FIREFOX_DICT}"
+fi

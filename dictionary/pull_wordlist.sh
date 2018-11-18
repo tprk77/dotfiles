@@ -7,18 +7,22 @@ set -o pipefail
 SCRIPT_DIR="$(dirname "$(readlink -f "${0}")")"
 
 WORDLIST_TXT="${SCRIPT_DIR}/wordlist.txt"
-ASPELL_DICT="~/.aspell.en.pws"
-FIREFOX_DICT="~/.mozilla/firefox/*.default/persdict.dat"
+ASPELL_DICT="${HOME}/.aspell.en.pws"
 
-# Convert these to actual filenames
-ASPELL_DICT=$(eval "ls -1 ${ASPELL_DICT}" | head -n 1)
-FIREFOX_DICT=$(eval "ls -1 ${FIREFOX_DICT}" | head -n 1)
+# For Firefox, assume we only care about the first profile
+FIREFOX_PROFILE=$(
+    find "${HOME}/.mozilla/firefox/" -maxdepth 1 -type d -name "*.default" | head -n 1)
+FIREFOX_DICT=$(if [ -n "${FIREFOX_PROFILE}" ]; then echo "${FIREFOX_PROFILE}/persdict.dat"; fi)
 
 # Dump all but the first line of the Aspell dictionary
-tail -n +2 "${ASPELL_DICT}" >> "${WORDLIST_TXT}"
+if [ -f "${ASPELL_DICT}" ]; then
+    tail -n +2 "${ASPELL_DICT}" >> "${WORDLIST_TXT}"
+fi
 
 # Dump Firefox dictionary
-cat "${FIREFOX_DICT}" >> "${WORDLIST_TXT}"
+if [ -n "${FIREFOX_DICT}" -a -f "${FIREFOX_DICT}" ]; then
+    cat "${FIREFOX_DICT}" >> "${WORDLIST_TXT}"
+fi
 
 # Sort and make unique
 sort "${WORDLIST_TXT}" | uniq | tee "${WORDLIST_TXT}" &>/dev/null

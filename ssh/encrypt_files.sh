@@ -64,7 +64,7 @@ function encrypt_file {
 
 decrypted_password "${ENCRYPTED_PASSWORD_FILE}" "${DECRYPTED_PASSWORD_FILE}"
 
-readonly decrypted_files="$(find "${DECRYPTED_DIR}" -type f)"
+readonly decrypted_files="$(find "${DECRYPTED_DIR}" -type f | LC_ALL=C sort)"
 
 for decrypted_file in ${decrypted_files}; do
     partial_path_mask="$(echo "${DECRYPTED_DIR}/" | sed -e "s;.;.;g")"
@@ -78,6 +78,8 @@ for decrypted_file in ${decrypted_files}; do
             echo "Unchanged: ${partial_path_file}"
             continue
         fi
+    else
+        echo "New File: ${partial_path_file}"
     fi
     encrypt_file "${decrypted_file}" "${encrypted_file}" "${DECRYPTED_PASSWORD_FILE}"
 done

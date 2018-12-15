@@ -51,7 +51,7 @@ function decrypt_file {
 
 decrypted_password "${ENCRYPTED_PASSWORD_FILE}" "${DECRYPTED_PASSWORD_FILE}"
 
-readonly encrypted_files="$(find "${ENCRYPTED_DIR}" -type f)"
+readonly encrypted_files="$(find "${ENCRYPTED_DIR}" -type f | LC_ALL=C sort)"
 
 for encrypted_file in ${encrypted_files}; do
     partial_path_mask="$(echo "${ENCRYPTED_DIR}/" | sed -e "s;.;.;g")"

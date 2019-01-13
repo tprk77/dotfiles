@@ -43,7 +43,7 @@ function decrypt_file {
     umask 077 && mkdir -p "${decrypted_dirname}" && umask "${old_umask}"
     echo -n "" > "${decrypted_file}"
     chmod 600 "${decrypted_file}"
-    gpg --batch --yes --quiet --no-use-agent --armor \
+    gpg --batch --yes --quiet --armor \
         --decrypt --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${decrypted_file}" "${encrypted_file}"

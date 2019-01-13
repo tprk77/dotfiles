@@ -40,7 +40,7 @@ function decrypted_compare {
     password_file="${3}"
     crypt_temp_dir="${4}"
     temp_decrypted_file="$(mktemp -p "${crypt_temp_dir}")"
-    gpg --batch --yes --quiet --no-use-agent --armor \
+    gpg --batch --yes --quiet --armor \
         --decrypt --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${temp_decrypted_file}" "${encrypted_file}"
@@ -56,7 +56,7 @@ function encrypt_file {
     password_file="${3}"
     encrypted_dirname="$(dirname "${encrypted_file}")"
     mkdir -p "${encrypted_dirname}"
-    gpg --batch --yes --quiet --no-use-agent --armor \
+    gpg --batch --yes --quiet --armor \
         --symmetric --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${encrypted_file}" "${decrypted_file}"

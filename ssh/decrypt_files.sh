@@ -17,6 +17,11 @@ readonly ENCRYPTED_DIR="${SCRIPT_DIR}/secret_files/encrypted"
 readonly ENCRYPTED_PASSWORD_FILE="${SCRIPT_DIR}/secret_files/password.txt.asc"
 readonly DECRYPTED_PASSWORD_FILE="$(mktemp -p "${CRYPT_TEMP_DIR}")"
 
+# Use --no-use-agent with older GPG like 1.4
+readonly GPG_VERSION="$(gpg --version | head -n 1 | egrep -o "[0-9]\.[0-9]\.[0-9]{1,2}")"
+readonly GPG_MAJOR_VERSION="$(echo "${GPG_VERSION}" | egrep -o "^[0-9]")"
+readonly GPG_AGENT_ARG="$([ "${GPG_MAJOR_VERSION}" -lt "2" ] && echo "--no-use-agent")"
+
 function encrypt_cleanup {
     rm -rf "${CRYPT_TEMP_DIR}"
 }
@@ -43,7 +48,7 @@ function decrypt_file {
     umask 077 && mkdir -p "${decrypted_dirname}" && umask "${old_umask}"
     echo -n "" > "${decrypted_file}"
     chmod 600 "${decrypted_file}"
-    gpg --batch --yes --quiet --armor \
+    gpg --batch --yes --quiet --armor ${GPG_AGENT_ARG} \
         --decrypt --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${decrypted_file}" "${encrypted_file}"

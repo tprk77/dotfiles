@@ -17,6 +17,11 @@ readonly ENCRYPTED_DIR="${SCRIPT_DIR}/secret_files/encrypted"
 readonly ENCRYPTED_PASSWORD_FILE="${SCRIPT_DIR}/secret_files/password.txt.asc"
 readonly DECRYPTED_PASSWORD_FILE="$(mktemp -p "${CRYPT_TEMP_DIR}")"
 
+# Use --no-use-agent with older GPG like 1.4
+readonly GPG_VERSION="$(gpg --version | head -n 1 | egrep -o "[0-9]\.[0-9]\.[0-9]{1,2}")"
+readonly GPG_MAJOR_VERSION="$(echo "${GPG_VERSION}" | egrep -o "^[0-9]")"
+readonly GPG_AGENT_ARG="$([ "${GPG_MAJOR_VERSION}" -lt "2" ] && echo "--no-use-agent")"
+
 function encrypt_cleanup {
     rm -rf "${CRYPT_TEMP_DIR}"
 }
@@ -40,7 +45,7 @@ function decrypted_compare {
     password_file="${3}"
     crypt_temp_dir="${4}"
     temp_decrypted_file="$(mktemp -p "${crypt_temp_dir}")"
-    gpg --batch --yes --quiet --armor \
+    gpg --batch --yes --quiet --armor ${GPG_AGENT_ARG} \
         --decrypt --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${temp_decrypted_file}" "${encrypted_file}"
@@ -56,7 +61,7 @@ function encrypt_file {
     password_file="${3}"
     encrypted_dirname="$(dirname "${encrypted_file}")"
     mkdir -p "${encrypted_dirname}"
-    gpg --batch --yes --quiet --armor \
+    gpg --batch --yes --quiet --armor ${GPG_AGENT_ARG} \
         --symmetric --cipher-algo AES256 \
         --passphrase-file "${password_file}" \
         -o "${encrypted_file}" "${decrypted_file}"

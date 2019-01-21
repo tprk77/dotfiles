@@ -19,8 +19,7 @@
 (setq-default mode-line-format
               '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified
                 mode-line-remote mode-line-frame-identification mode-line-buffer-identification
-                "   " mode-line-position "   " mode-line-modes mode-line-misc-info
-                mode-line-end-spaces))
+                " " mode-line-position mode-line-misc-info mode-line-modes mode-line-end-spaces))
 
 ;; Fix default JS indent (for JSON files)
 (setq-default js-indent-level 2)

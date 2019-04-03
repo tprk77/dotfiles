@@ -15,6 +15,7 @@ backquote
 balancer
 bitwise
 boolean
+breakpoint
 Caelan
 centroid
 changelog
@@ -45,6 +46,7 @@ Dubins
 effector
 Eigen
 emoji
+Emscripten
 Ergodox
 expander
 fallback
@@ -91,6 +93,8 @@ MP
 MPlan
 mutex
 namenode
+namespace
+namespaces
 NaN
 nullable
 Nuno
@@ -114,6 +118,7 @@ prvalue
 ramping
 rando
 rasterize
+README
 rebase
 rebasing
 Redux
@@ -125,6 +130,7 @@ replan
 replanning
 repo
 reprioritize
+reserver
 roadmap
 roboticists
 RP
@@ -133,6 +139,7 @@ Ruijie
 runtime
 rvalue
 Scala
+Screeps
 segfault
 segfaults
 setpoint
@@ -166,14 +173,17 @@ UI
 UIs
 uninstall
 uninstalled
+unintuitive
 upvoted
 username
 UX
 VCB
 versioned
 walkthrough
+wallers
 waypoint
 waypoints
+WebSockets
 Wes
 whitespace
 WIP

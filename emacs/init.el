@@ -70,27 +70,9 @@
 ;; Do prompt to kill emacs!
 (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Allow C-x C-o to go to the last window
-(global-set-key (kbd "C-x C-o")
-                (lambda ()
-                  (interactive)
-                  (other-window -1)))
-
-;; Allow C-x p and C-x C-p to switch frames
-(global-set-key (kbd "C-x p")
-                (lambda ()
-                  (interactive)
-                  (other-frame 1)
-                  (select-frame-set-input-focus (selected-frame))))
-(global-set-key (kbd "C-x C-p")
-                (lambda ()
-                  (interactive)
-                  (other-frame -1)
-                  (select-frame-set-input-focus (selected-frame))))
-
 ;; Multiframe movement with easy bindings
-(global-set-key (kbd "M-o") #'next-multiframe-window)
-(global-set-key (kbd "M-O") #'previous-multiframe-window)
+(global-set-key (kbd "C-x o") #'next-multiframe-window)
+(global-set-key (kbd "C-x C-o") #'previous-multiframe-window)
 
 ;; Some function key bindings
 (global-set-key (kbd "<f1>") #'shell)

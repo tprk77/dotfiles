@@ -11,6 +11,9 @@ HOME_PUBLIC_KEY_FILE := $(PUBLIC_KEY_DIR)/id-ed25519-github-home.pub
 WORK_PRIVATE_KEY_FILE := $(DECRYPTED_DIR)/id-ed25519-github-work
 WORK_PUBLIC_KEY_FILE := $(PUBLIC_KEY_DIR)/id-ed25519-github-work.pub
 
+T77_PRIVATE_KEY_FILE := $(DECRYPTED_DIR)/id-ed25519-t77
+T77_PUBLIC_KEY_FILE := $(PUBLIC_KEY_DIR)/id-ed25519-t77.pub
+
 DEST_SSH_DIR := ${HOME}/.ssh
 SSH_BACKUP_DIR := $(DEST_SSH_DIR)/backups.$(backupdate)
 
@@ -35,4 +38,8 @@ all:
 	    "$(WORK_PRIVATE_KEY_FILE)" "$(DEST_SSH_DIR)"
 	rsync --checksum -b --backup-dir="$(SSH_BACKUP_DIR)" \
 	    "$(WORK_PUBLIC_KEY_FILE)" "$(DEST_SSH_DIR)"
+	rsync --checksum -b --backup-dir="$(SSH_BACKUP_DIR)" \
+	    "$(T77_PRIVATE_KEY_FILE)" "$(DEST_SSH_DIR)"
+	rsync --checksum -b --backup-dir="$(SSH_BACKUP_DIR)" \
+	    "$(T77_PUBLIC_KEY_FILE)" "$(DEST_SSH_DIR)"
 	rmdir --ignore-fail-on-non-empty "$(SSH_BACKUP_DIR)"

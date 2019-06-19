@@ -7,6 +7,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     export MANPAGER=/bin/cat
     export GIT_PAGER=/bin/cat
     export SYSTEMD_PAGER=/bin/cat
+    alias apt="apt -o Dpkg::Progress-Fancy=0"
     #export EDITOR=emacsclient
     #alias git="git --no-pager"
 fi

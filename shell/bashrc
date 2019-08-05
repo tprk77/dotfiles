@@ -9,7 +9,6 @@ if [ -n "$INSIDE_EMACS" ]; then
     export SYSTEMD_PAGER=/bin/cat
     alias apt="apt -o Dpkg::Progress-Fancy=0"
     #export EDITOR=emacsclient
-    #alias git="git --no-pager"
 fi
 
 alias dpkg-list='dpkg-query -W -f '\''${db:Status-Abbrev} ${Package}\n'\'

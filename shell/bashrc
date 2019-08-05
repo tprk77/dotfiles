@@ -11,3 +11,5 @@ if [ -n "$INSIDE_EMACS" ]; then
     #export EDITOR=emacsclient
     #alias git="git --no-pager"
 fi
+
+alias dpkg-list='dpkg-query -W -f '\''${db:Status-Abbrev} ${Package}\n'\'

@@ -202,12 +202,9 @@ buffer is not visiting a file."
 
 (use-package cl-lib)
 
-(use-package solarized-theme
+(use-package zenburn-theme
   :if window-system
-  :config (progn
-            (setq solarized-emphasize-indicators nil)
-            (setq x-underline-at-descent-line t)
-            (load-theme 'solarized-dark t))
+  :config (load-theme 'zenburn t)
   :ensure t)
 
 (use-package ample-theme

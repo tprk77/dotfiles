@@ -317,26 +317,7 @@ buffer is not visiting a file."
 (use-package whitespace
   :commands whitespace-mode
   :init (add-hook 'prog-mode-hook #'whitespace-mode)
-  :config (setq-default whitespace-style
-                        (if window-system
-                            '(face
-                              trailing
-                              tabs
-                              spaces
-                              lines-tail
-                              newline
-                              indentation
-                              empty
-                              space-mark
-                              tab-mark
-                              newline-mark)
-                          '(face
-                            trailing
-                            lines-tail
-                            empty
-                            space-mark
-                            tab-mark
-                            newline-mark))
+  :config (setq-default whitespace-style '(face trailing tabs lines-tail empty)
                         ;; Using nil means use fill-column
                         whitespace-line-column nil)
   :diminish whitespace-mode)

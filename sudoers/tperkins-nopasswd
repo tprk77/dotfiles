@@ -1,7 +1,7 @@
-# Allows user tperkins to sudo without a password!
+# Allows user tim to sudo without a password!
 #
 # This file is to be stored in the directory `/etc/sudoers.d/`, with mode 0440.
 # NOTE: Any file ending in `~` or containing `.` will be ignored by Sudo. Please
 # see `/etc/sudoers.d/README` for more details.
 
-tperkins ALL=(ALL:ALL) NOPASSWD: ALL
+tim ALL=(ALL:ALL) NOPASSWD: ALL

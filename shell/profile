@@ -1,0 +1,3 @@
+# Force Qt to use the `fusion` style. Using `gtk2` seems to be broken
+# by default for whatever reason, and `fusion` seems to always work.
+QT_QPA_PLATFORMTHEME="fusion"

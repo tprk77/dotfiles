@@ -25,4 +25,4 @@ if [ -n "${FIREFOX_DICT}" -a -f "${FIREFOX_DICT}" ]; then
 fi
 
 # Sort and make unique
-sort "${WORDLIST_TXT}" | uniq | tee "${WORDLIST_TXT}" &>/dev/null
+LC_ALL="C" sort "${WORDLIST_TXT}" -u | tee "${WORDLIST_TXT}" &>/dev/null

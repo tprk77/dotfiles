@@ -24,6 +24,8 @@ HDFS
 HackerRank
 Hadoop
 IP
+Intera
+Jira
 Kerberos
 Kubernetes
 MEGADEB
@@ -38,6 +40,9 @@ OG
 Ok
 Optimus
 PID
+PLC
+PLCs
+Polarion
 README
 ROS
 RP
@@ -55,6 +60,7 @@ UI
 UIs
 UX
 VCB
+WFH
 WIP
 WebSockets
 Wes
@@ -74,6 +80,7 @@ breakpoint
 centroid
 changelog
 checkmark
+clicky
 clothoid
 clothoids
 codebase
@@ -87,16 +94,21 @@ dataset
 datetime
 deallocates
 deconflict
+deconfliction
 decrypt
 dedent
 deprioritize
+deserialization
 destructor
 destructors
 diff
 dimensionality
 downloader
+drydock
 effector
 emoji
+end-effector
+errored
 expander
 fallback
 filenames
@@ -114,6 +126,7 @@ initializer
 inline
 inlined
 internet
+jitter
 keytabs
 kinodynamically
 localhost
@@ -125,6 +138,7 @@ mentorship
 metadata
 microservices
 middleware
+milliradians
 mutator
 mutex
 namenode
@@ -145,6 +159,8 @@ pixelated
 pluggable
 plugin
 precalculated
+productize
+productizing
 prvalue
 ramping
 rando
@@ -152,6 +168,7 @@ rasterize
 realtime
 rebase
 rebasing
+recurse
 refactor
 refactored
 refactors
@@ -169,6 +186,7 @@ rvalue
 scalable
 segfault
 segfaults
+serializers
 setpoint
 sharded
 sharding
@@ -199,6 +217,7 @@ tuples
 uninstall
 uninstalled
 unintuitive
+unowned
 upvoted
 username
 validator
@@ -217,4 +236,5 @@ workcells
 workflow
 workflows
 workspace
+workspaces
 xvalue
